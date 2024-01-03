@@ -15,6 +15,7 @@ const player = {
 }
 
 function displayLocation() {
+    console.clear()
     console.log(`\x1b[35mYou are at the ${player.location} of the ${player.time}\x1b[0m`)
 
     // Player Inventory Display
@@ -50,11 +51,22 @@ function displayLocation() {
             console.log("OH NO!!!!! The time machine is missing. \nAll that remains are charred grass in the area you left the machine. \nIn that moment, you hear a loud and vicous roar coming from behind you. \nA Dimorphodon is flying in circles above you. \nDo you stay and FIGHT or RUN away?")
             break;
         case 'plains':
-            console.clear()
             console.log("You sprint as fast as you can. \nWhile you are running, you encounter a Stegosaurus that panics when seeing what's chasing you. \nJust as the Dimorphodon is about to catch you, the Stegosaurus swings its spiked tail that makes a loud thud with the ground. \nThe Dimorphodon makes a terrified screech and quickly flies away. \nYou keep sprinting until your legs and lungs give out, causing you to fall face first into some mud. \nAfter regaining your breath, you look up and see a strange figure in the distance that looks like a human. \nYou yell out, 'HEY!' at the top of your lungs and begin to chase the figure. \nThe figure has completely disappeared and you find no evidence of footprints. \nDiscouraged, you begin to walk along a river stream and begin to ponder about what to do next. \nAfter a few hours of walking, you see in the distance a corpse of the Stegosaurus that saved your life. \nStanding over the body is a large creature with two horns and skinny legs. \nYou wonder whether you can TAME the creature or should RUN away?")
             break;
         case 'river':
             console.log("You sprint back in the opposite direction along the river. \nAfter a few moments, you peak back over your shoulder to see what you now know is an Allosaurus feasting on the Stegosaurus. \nYou begin to slow down your stride when you encounter a human filling a canteen in the water. \n'Hello there! I'm Dr. Williams and you must be the person who activated my time machine. Fear not, I keep a shrink ray in my pocket and shrunk the machine to carry around. The machine you used is not finished but luckily I still have another prototype.' \nDr. Williams pulls out his shrink ray, flips the switch to enlarge, and targets a peanut sized shape on the ground. \nA similar looking time machine appears before you and Dr. Williams motions you inside. \nDo you ENTER the machine or REFUSE?")
+            break;
+        case 'vast_plains':
+            console.log('After walking for a few more hours, you stumble upon what looks like a Stegosaurus. \nThe massive creature is munching upon some plants until he looks up and is startled to see you. \nActing in defense, the Stegosaurus swings its spiked tail that smashes into your chest before being able to react. \n----GAME OVER----')
+            rl.close()
+            break;
+        case 'stegosaurus_corpse':
+            console.log(`The large creatures looks at you in puzzlement as you approach. \nYou realize too late that this dinosaur is an Allosaurus when you begin to run. \nThe last thing you remember is being quickly run down by the large creature. \nAn Allosaurus has eaten a light appetizer of ${player.name}. \n----GAME OVER----`)
+            rl.close()
+            break;
+        case 'empty_landing_site':
+            console.log(`Dr. Williams shrugs his head and enters his time machine. \nA large flash blinds your vision momentarily and the machine is no longer there. \n${player.name} is never heard from again. \n----GAME OVER----`)
+            rl.close()
             break;
         case '':
             console.log()
@@ -107,8 +119,7 @@ function handleInput(input) {
             if (input.toLowerCase() === 'return') {
                 player.location = 'missing_time_machine'
             } else if (input.toLowerCase() === 'explore') {
-                console.log('After walking for a few more hours, you stumble upon what looks like a Stegosaurus. \nThe massive creature is munching upon some plants until he looks up and is startled to see you. \nActing in defense, the Stegosaurus swings its spiked tail that smashes into your chest before being able to react. \n----GAME OVER----')
-                rl.close()
+                player.location = 'vast_plains'
             }
             break;
         case 'missing_time_machine':
@@ -124,8 +135,7 @@ function handleInput(input) {
             if (input.toLowerCase() === 'run') {
                 player.location = 'river'
             } else if (input.toLowerCase() === 'tame') {
-                console.log(`The large creatures looks at you in puzzlement as you approach. \nYou realize too late that this dinosaur is an Allosaurus when you begin to run. \nThe last thing you remember is being quickly run down by the large creature. \nAn Allosaurus has eaten a light appetizer of ${player.name}. \n----GAME OVER----`)
-                rl.close()
+                player.location = 'stegosaurus_corpse'
             }
             break;
         case 'river':
@@ -134,8 +144,7 @@ function handleInput(input) {
                 player.time = 'Cretaceous Period'
                 console.log('END OF ACT I')
             } else if (input.toLowerCase() === 'refuse') {
-                console.log(`Dr. Williams shrugs his head and enters his time machine. \nA large flash blinds your vision momentarily and the machine is no longer there. \n${player.name} is never heard from again. \n----GAME OVER----`)
-                rl.close()
+                player.location = 'empty_landing_site'
             }
             break;
         case '':
@@ -156,7 +165,7 @@ function handleInput(input) {
 }
 
 // Start the game
-console.log("Welcome to Whinsley's Adventure Game!");
+console.log("Welcome to Dr. Dino! Whinsley's Text Adventure Game!");
 rl.question("What is your name? ", (name) => {
     player.name = name;
     displayLocation();
