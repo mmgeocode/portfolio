@@ -45,7 +45,7 @@ function displayLocation() {
             console.log("Upon further inspection of the machine, you notice a big red button inside. \nThere are a lot of flashing lights, dials, and gauges. \nWhat would you like to do? PUSH the red button or LEAVE the machine alone?")
             break;
         case 'landing_zone':
-            console.log("You begin to scout the area around the time machine. \nThe surrounding environment is plains that are crossed by slow-moving rivers. \nAfter spending several hours walking around, you can either EXPLORE more of the area or RETURN to the time machine.")
+            console.log("Dazed and confused you stumble out of the strange machine.\nA soothing robotic voice speaks from a speaker inside the machine, 'You are have landed in the Jurassic Period of what becomes the state of Colorado. \nYou begin to scout the area around the time machine. \nThe surrounding environment is plains that are crossed by slow-moving rivers. \nAfter spending several hours walking around, you can either EXPLORE more of the area or RETURN to the time machine.")
             break;
         case 'missing_time_machine':
             console.log("OH NO!!!!! The time machine is missing. \nAll that remains are charred grass in the area you left the machine. \nIn that moment, you hear a loud and vicous roar coming from behind you. \nA Dimorphodon is flying in circles above you. \nDo you stay and FIGHT or RUN away?")
@@ -67,6 +67,50 @@ function displayLocation() {
         case 'empty_landing_site':
             console.log(`Dr. Williams shrugs his head and enters his time machine. \nA large flash blinds your vision momentarily and the machine is no longer there. \n${player.name} is never heard from again. \n----GAME OVER----`)
             rl.close()
+            break;
+        case 'water_landing_zone':
+            console.log("The machine starts up and emits a loud, electrical bang that causes your vision to go white. \nAfter a few moments, you regain your vision and hear an alarm ringing in the time machine. \n'WHOOPS,' blurts out Dr. Williams. 'The dial was set to the Cretaceous Period in Colorado which means.... THIS AREA IS UNDER WATER.' \nYou remember from your studies this is the Western Interior Seaway as you swim out of the hatch. \nDr. Williams uses his shrink ray to enlarge a grape sized shape that turns into a zodiac boat. \n'I also have an airplane in my pocket.' \nAfter catching your breath, you realize that you can EXPLORE in the zodiac boat or FLY the airplane.")
+            break;
+        case 'coast':
+            console.log("After traveling by boat for almost a day, you finally see a coast off in the distance. 'We need to find some resources to repair the time machine you broke. Let's search around here for a bit,' suggests Dr. Williams. \nWalking around for a few hours, you encounter a Triceratops that looks friendly. \nDo you EXAMINE and get closer to the Triceratops, or EXPLORE in a different direction?")
+            break;
+        case 'ocean':
+            console.log(`The airplane is built for water landings which allows your group to take off. \nAfter flying for several hours the low fuel warning begins to flash. \n'UH OHHHHH,' you both say as the plane begins to descend into a vast ocean. \nDr. Williams and ${player.name} are never heard from again. \n----GAME OVER----`)
+            rl.close()
+            break;
+        case 'land':
+            console.log("The Triceratops is indeed friendly and welcoming to your presence. \nThe creature begins to follow your group as you continue to explore for resources. \nSuddenly, you hear a ferocious roar in front of you as an extremely large creature comes running towards your direction. \nWithout hesitation, you either decide to either RUN or WATCH the large creature.")
+            break;
+        case 'animal_encounter':
+            console.log(`After a few minutes of walking, you hear a loud roar to your right side. \nYou turn and see a massive Tyrannosaurus Rex sprinting full speed. \nIn an instant, ${player.name} and Dr. Williams become a light appetizer. \n----GAME OVER----`)
+            rl.close()
+            break;
+        case 'land_battle':
+            console.log("As the Tyrannosaurus Rex starts to creep toward your group, the Triceratops sprints at the intimidating creature. \nA loud roar and wimpering sobs is all the Tyrannosaurus emits as it limps away after loosing the fight with the Triceratops. \nThe victorious Triceratops begins to walk away. \nDo you FOLLOW the creature, or do you LEAVE the creature alone?")
+            break;
+        case '':
+            console.log()
+            break;
+        case '':
+            console.log()
+            break;
+        case '':
+            console.log()
+            break;
+        case '':
+            console.log()
+            break;
+        case '':
+            console.log()
+            break;
+        case '':
+            console.log()
+            break;
+        case '':
+            console.log()
+            break;
+        case '':
+            console.log()
             break;
         case '':
             console.log()
@@ -145,6 +189,111 @@ function handleInput(input) {
                 console.log('END OF ACT I')
             } else if (input.toLowerCase() === 'refuse') {
                 player.location = 'empty_landing_site'
+            }
+            break;
+        case 'water_landing_zone':
+            if (input.toLowerCase() === 'explore') {
+                player.location = 'coast'
+            } else if (input.toLowerCase() === 'fly') {
+                player.location = 'ocean'
+            }
+            break;
+        case 'coast':
+            if (input.toLowerCase() === 'examine') {
+                player.location = 'land'
+            } else if (input.toLowerCase() === 'explore') {
+                player.location = 'animal_encounter'
+            }
+            break;
+        case 'land':
+            if (input.toLowerCase() === 'watch') {
+                player.location = 'land_battle'
+            } else if (input.toLowerCase() === 'run') {
+                player.location = 'land_plains'
+            }
+            break;
+        case '':
+            if (input.toLowerCase() === '') {
+                player.location = ''
+            } else if (input.toLowerCase() === '') {
+                player.location = ''
+            }
+            break;
+        case '':
+            if (input.toLowerCase() === '') {
+                player.location = ''
+            } else if (input.toLowerCase() === '') {
+                player.location = ''
+            }
+            break;
+        case '':
+            if (input.toLowerCase() === '') {
+                player.location = ''
+            } else if (input.toLowerCase() === '') {
+                player.location = ''
+            }
+            break;
+        case '':
+            if (input.toLowerCase() === '') {
+                player.location = ''
+            } else if (input.toLowerCase() === '') {
+                player.location = ''
+            }
+            break;
+        case '':
+            if (input.toLowerCase() === '') {
+                player.location = ''
+            } else if (input.toLowerCase() === '') {
+                player.location = ''
+            }
+            break;
+        case '':
+            if (input.toLowerCase() === '') {
+                player.location = ''
+            } else if (input.toLowerCase() === '') {
+                player.location = ''
+            }
+            break;
+        case '':
+            if (input.toLowerCase() === '') {
+                player.location = ''
+            } else if (input.toLowerCase() === '') {
+                player.location = ''
+            }
+            break;
+        case '':
+            if (input.toLowerCase() === '') {
+                player.location = ''
+            } else if (input.toLowerCase() === '') {
+                player.location = ''
+            }
+            break;
+        case '':
+            if (input.toLowerCase() === '') {
+                player.location = ''
+            } else if (input.toLowerCase() === '') {
+                player.location = ''
+            }
+            break;
+        case '':
+            if (input.toLowerCase() === '') {
+                player.location = ''
+            } else if (input.toLowerCase() === '') {
+                player.location = ''
+            }
+            break;
+        case '':
+            if (input.toLowerCase() === '') {
+                player.location = ''
+            } else if (input.toLowerCase() === '') {
+                player.location = ''
+            }
+            break;
+        case '':
+            if (input.toLowerCase() === '') {
+                player.location = ''
+            } else if (input.toLowerCase() === '') {
+                player.location = ''
             }
             break;
         case '':
