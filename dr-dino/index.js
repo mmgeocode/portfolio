@@ -45,13 +45,17 @@ function displayLocation() {
             console.log("Upon further inspection of the machine, you notice a big red button inside. \nThere are a lot of flashing lights, dials, and gauges. \nWhat would you like to do? PUSH the red button or LEAVE the machine alone?")
             break;
         case 'landing_zone':
-            console.log("Dazed and confused you stumble out of the strange machine.\nA soothing robotic voice speaks from a speaker inside the machine, 'You are have landed in the Jurassic Period of what becomes the state of Colorado. \nYou begin to scout the area around the time machine. \nThe surrounding environment is plains that are crossed by slow-moving rivers. \nAfter spending several hours walking around, you can either EXPLORE more of the area or RETURN to the time machine.")
+            console.log("Dazed and confused you stumble out of the strange machine.\nA soothing robotic voice speaks from a speaker inside the machine, 'You have landed in the Jurassic Period of what becomes the state of Colorado. \nYou begin to scout the area around the time machine. \nThe surrounding environment is plains that are crossed by slow-moving rivers. \nAfter spending several hours walking around, you can either EXPLORE more of the area or RETURN to the time machine.")
             break;
         case 'missing_time_machine':
             console.log("OH NO!!!!! The time machine is missing. \nAll that remains are charred grass in the area you left the machine. \nIn that moment, you hear a loud and vicous roar coming from behind you. \nA Dimorphodon is flying in circles above you. \nDo you stay and FIGHT or RUN away?")
             break;
         case 'plains':
             console.log("You sprint as fast as you can. \nWhile you are running, you encounter a Stegosaurus that panics when seeing what's chasing you. \nJust as the Dimorphodon is about to catch you, the Stegosaurus swings its spiked tail that makes a loud thud with the ground. \nThe Dimorphodon makes a terrified screech and quickly flies away. \nYou keep sprinting until your legs and lungs give out, causing you to fall face first into some mud. \nAfter regaining your breath, you look up and see a strange figure in the distance that looks like a human. \nYou yell out, 'HEY!' at the top of your lungs and begin to chase the figure. \nThe figure has completely disappeared and you find no evidence of footprints. \nDiscouraged, you begin to walk along a river stream and begin to ponder about what to do next. \nAfter a few hours of walking, you see in the distance a corpse of the Stegosaurus that saved your life. \nStanding over the body is a large creature with two horns and skinny legs. \nYou wonder whether you can TAME the creature or should RUN away?")
+            break;
+        case 'dimo_fight':
+            console.log(`You grab a stone from the ground and throw as hard as you can. \nThe stone barely misses the Dimorphodon as they swoop down from the sky. \nThe last thing you remember is a loud thud that knocks all of the air out of your body.\nThe dinosaur has is quite full after feasting on ${player.name}. \n----GAME OVER----`)
+            rl.close()
             break;
         case 'river':
             console.log("You sprint back in the opposite direction along the river. \nAfter a few moments, you peak back over your shoulder to see what you now know is an Allosaurus feasting on the Stegosaurus. \nYou begin to slow down your stride when you encounter a human filling a canteen in the water. \n'Hello there! I'm Dr. Williams and you must be the person who activated my time machine. Fear not, I keep a shrink ray in my pocket and shrunk the machine to carry around. The machine you used is not finished but luckily I still have another prototype.' \nDr. Williams pulls out his shrink ray, flips the switch to enlarge, and targets a peanut sized shape on the ground. \nA similar looking time machine appears before you and Dr. Williams motions you inside. \nDo you ENTER the machine or REFUSE?")
@@ -88,26 +92,36 @@ function displayLocation() {
         case 'land_battle':
             console.log("As the Tyrannosaurus Rex starts to creep toward your group, the Triceratops sprints at the intimidating creature. \nA loud roar and wimpering sobs is all the Tyrannosaurus emits as it limps away after loosing the fight with the Triceratops. \nThe victorious Triceratops begins to walk away. \nDo you FOLLOW the creature, or do you LEAVE the creature alone?")
             break;
-        case '':
-            console.log()
+        case 'land_plains':
+            console.log(`As you begin to run away, the Tyrannosaurus Rext recognizes you as an easier prey. \nThe massive creature easily catches and makes Dr. Williams and ${player.name} a tasty snack. \n----GAME OVER----`)
+            rl.close()
             break;
-        case '':
-            console.log()
+        case 'lake':
+            console.log("Your group follows the Triceratops and eventually arrives at a lake. \n'Perfect! This lake has the moss, water, and Onchopristisca (a sawfish) that we need to make my patented bio fuel. Please help me build fish traps and gather moss,' says Dr. Williams. \nYou spend the next two days gathering resources for another enlarged contraption from Dr. Williams pocket. \n'Let's also expand the plane to take our Triceratops friend.' \nYou watch the doctor play with what looks like legos before the enlarge process takes hold and poof! There is a plane large enough to hold your group. \nI estimate our fuel reserves can fly us to ancient MOROCCO or to ANOTHER country. Which do you choose?")
             break;
-        case '':
-            console.log()
+        case 'open_land':
+            console.log(`Without the local guide Triceratops, your group becomes lost and never discovers the resources needed to return to present time. \nIn the near future, a group of paleontologists discover the fossil remains of ${player.name} and Dr. Williams. \n----GAME OVER----`)
+            rl.close()
             break;
-        case '':
-            console.log()
+        case 'ancient_Morocco':
+            console.log("Your plane lands on a biome border of a desert and forest in what will become modern Morocco. \n'Why don't you take our Triceratops friend out to eat some leafy greens,' says Dr. Williams. \nYou lead the Triceratops to a prime herbavore feasting spot when the ground begins to shake. \nYou instantly recoginize a Spinosaurus walking towards you. \nDo you try to RUN or TALK to the massive creature?")
             break;
-        case '':
-            console.log()
+        case 'open_ocean':
+            console.log(`'UH OHHHHH' yells Dr Williams. 'I'm a paleontologist and not a chemist... I overestimated our fuel efficiency.' \nDr. Williams and ${player.name} are never heard from again. \n----GAME OVER----`)
+            rl.close()
             break;
-        case '':
-            console.log()
+        case 'fishing_grounds':
+            console.log("You notice that the large Spinosaurus has a fish in its mounth. \nAt that moment, you remember this dinosaur is a piscivore and its holding an Onchopristica within its jaws... the same fish you need in order to make the bio fuel. \nYou follow the intimidating creature to a river where you put your fishing skills to use. \nAfter catching numerous fish, and rewarding your friendly Spinosaurus, you begin to walk back to the plane. \nWalking over a hill, you see the corpse of a gigantic Sauropod. \nFeeding on the corpse is a Carcharodontosaurus. \nDo you try to surprise the dinosaur and FIGHT with your crew, or try to become FRIENDS with the Carcharodontosaurus?")
             break;
-        case '':
-            console.log()
+        case 'river_flee':
+            console.log(`The Triceratops sees you panic and flees the Spinosaurus with you. \nThe pathway gets too narrow between trees and the Triceratops spears you with one of its horns. \nPaleontologists discover the human rib cage of ${player.name} fossilized around a Triceratops horn in the near future. \n----GAME OVER----`)
+            rl.close()
+            break;
+        case 'Morocco_landing_zone':
+            console.log("You quickly throw one of your fish towards the Carcharondontosaurus. \nThe dinosaur cautiously approaches and begins feasting on the fresh catch. \nAfter finishing the meal, the Carcharondontosaurus follows your group back to landing site of the plane. \nDr. Williams looks on in amazement and relief at the herd of dinosaurs you have collected along with the resources. \n'With our fuel replenished, we should fly to Mongolia to collect the resources needed to repair the time machine,' says Dr. Williams. \nThe plane is expanded to account for the group of dinosaurs and quickly takes off towards Mongolia. \nEND OF ACT II")
+            break;
+        case 'pack_encounter':
+            console.log(`You try to surprise attack the Carcharodontosaurus but it sees you approach. \nThe dinosaur makes some loud screeching noises while running away. \nYour dinosaur crew follows you trying to run down the fleeing dinosaur. \nThe Carcharondontosaurus stops running and begins to attack the Spinosaurus when a whole pack of over twelve dinosaurs appear. \n${player.name} and their crew of dinosaurs become a magnificent feast for the pack of Carcharodontosaurus. \n----GAME OVER----`)
             break;
         case '':
             console.log()
@@ -154,7 +168,6 @@ function handleInput(input) {
             if (input.toLowerCase() === 'push') {
                 player.location = 'landing_zone'
                 player.time = 'Jurassic Period'
-                console.log("Dazed and confused you stumble out of the strange machine.\nA soothing robotic voice speaks from a speaker inside the machine, 'You are have landed in the Jurassic Period of what becomes the state of Colorado.' ")
             } else if (input.toLowerCase() === 'leave') {
                 player.location = 'paleontology_lab'
             }
@@ -170,9 +183,7 @@ function handleInput(input) {
             if (input.toLowerCase() === 'run') {
                 player.location = 'plains'
             } else if (input.toLowerCase() === 'fight') {
-                player.location = ''
-                console.log(`You grab a stone from the ground and throw as hard as you can. \nThe stone barely misses the Dimorphodon as they swoop down from the sky. \nThe last thing you remember is a loud thud that knocks all of the air out of your body.\nThe dinosaur has is quite full after feasting on ${player.name}. \n----GAME OVER----`)
-                rl.close()
+                player.location = 'dimo_fight'
             }
             break;
         case 'plains':
@@ -212,32 +223,32 @@ function handleInput(input) {
                 player.location = 'land_plains'
             }
             break;
-        case '':
-            if (input.toLowerCase() === '') {
-                player.location = ''
-            } else if (input.toLowerCase() === '') {
-                player.location = ''
+        case 'land_battle':
+            if (input.toLowerCase() === 'follow') {
+                player.location = 'lake'
+            } else if (input.toLowerCase() === 'leave') {
+                player.location = 'open_land'
             }
             break;
-        case '':
-            if (input.toLowerCase() === '') {
-                player.location = ''
-            } else if (input.toLowerCase() === '') {
-                player.location = ''
+        case 'lake':
+            if (input.toLowerCase() === 'morocco') {
+                player.location = 'ancient_Morocco'
+            } else if (input.toLowerCase() === 'another') {
+                player.location = 'open_ocean'
             }
             break;
-        case '':
-            if (input.toLowerCase() === '') {
-                player.location = ''
-            } else if (input.toLowerCase() === '') {
-                player.location = ''
+        case 'ancient_Morocco':
+            if (input.toLowerCase() === 'talk') {
+                player.location = 'fishing_grounds'
+            } else if (input.toLowerCase() === 'run') {
+                player.location = 'river_flee'
             }
             break;
-        case '':
-            if (input.toLowerCase() === '') {
-                player.location = ''
-            } else if (input.toLowerCase() === '') {
-                player.location = ''
+        case 'fishing_grounds':
+            if (input.toLowerCase() === 'friends') {
+                player.location = 'Morocco_landing_zone'
+            } else if (input.toLowerCase() === 'fight') {
+                player.location = 'pack_encounter'
             }
             break;
         case '':
