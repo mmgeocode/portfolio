@@ -118,16 +118,45 @@ function displayLocation() {
             rl.close()
             break;
         case 'Morocco_landing_zone':
-            console.log("You quickly throw one of your fish towards the Carcharondontosaurus. \nThe dinosaur cautiously approaches and begins feasting on the fresh catch. \nAfter finishing the meal, the Carcharondontosaurus follows your group back to landing site of the plane. \nDr. Williams looks on in amazement and relief at the herd of dinosaurs you have collected along with the resources. \n'With our fuel replenished, we should fly to Mongolia to collect the resources needed to repair the time machine,' says Dr. Williams. \nThe plane is expanded to account for the group of dinosaurs and quickly takes off towards Mongolia. \nEND OF ACT II")
+            console.log("You quickly throw one of your fish towards the Carcharondontosaurus. \nThe dinosaur cautiously approaches and begins feasting on the fresh catch. \nAfter finishing the meal, the Carcharondontosaurus follows your group back to landing site of the plane. \nDr. Williams looks on in amazement and relief at the herd of dinosaurs you have collected along with the resources. \n'With our fuel replenished, we should fly to Mongolia to collect the resources needed to repair the time machine,' says Dr. Williams. \nThe plane is expanded to account for the group of dinosaurs and quickly takes off towards Mongolia. \nAfter several hours of flying, should LAND?")
             break;
         case 'pack_encounter':
             console.log(`You try to surprise attack the Carcharodontosaurus but it sees you approach. \nThe dinosaur makes some loud screeching noises while running away. \nYour dinosaur crew follows you trying to run down the fleeing dinosaur. \nThe Carcharondontosaurus stops running and begins to attack the Spinosaurus when a whole pack of over twelve dinosaurs appear. \n${player.name} and their crew of dinosaurs become a magnificent feast for the pack of Carcharodontosaurus. \n----GAME OVER----`)
             break;
-        case '':
-            console.log()
+        case 'desert':
+            console.log("After taking off in the airplane from Morocco, you eventually see a vast desert and mountainous region on the horizon. \n'Ahhhh, this must be where present day Mongolia becomes,' says Dr. Williams. \n'My sensors indicate this is the place with the metals and rare earth elements we need to repair the Time Machine. \nWhy don't you take our dinosaur group out to get some food while I work,' suggests Dr. Williams. \nYou lead the herd of dinosaurs out to search for food when you encounter a lone Protoceratops. \nDo you try to TALK to the dinosaur, or continue to EXPLORE?")
             break;
-        case '':
-            console.log()
+        case 'desert_exploration':
+            console.log("You use caution around the Protoceratops and begin to explore the desert in search of food. \nNot long after you begin to hear strange noises coming over the hills. \nYou pause in your tracks as you see a pack of Velociraptors begin to approach your group. \nDo you RUN from or STAY with the Velociraptors?")
+            break;
+        case 'desert_encounter':
+            console.log(`As you approach the Protoceratops, it takes one look at you before quickly biting your leg. \nYou yell out in pain but no one shows up to help. \n${player.name} is never heard from again. \n----GAME OVER----`)
+            rl.close()
+            break;
+        case 'freezing_desert':
+            console.log("While walking in the desert, the temperature begins to drop rapidly as the sun sets. \nYou begin to wonder what elevation and season you are in because freezing winds begin to blow. \nThe pack of Velociraptors seem curious about your presence and have not shown any hostility. \nThe feathered creatures begin to hudle around you but the Spinosaurus, Carcharodontosaurus, and Triceratops do not look well and begin to panic. \nDo you try to HERD your group back to the landing site, or LEAVE the massive creatures alone?")
+            break;
+        case 'pack_encounter':
+            console.log(`You quickly turn around and sprint in the opposite direction. \nLoud screeching and the sounds of battle erupt behind you. \nAfter quickly looking back to see if a Velociraptor is chasing, you are shocked to se the Protoceratops in front of you. \nBefore you can dodge, the creature tramples you before running off. \nWith your last moments of vision, the pack of Velociraptors find you. \n${player.name} ends up as raptor food. \n----GAME OVER----`)
+            rl.close()
+            break;
+        case 'ancient_China':
+            console.log("You bid farewell to the Spinosaurus, Carcharodontosaurus, and Triceratops as they stomp off into the distance. \nYou quickly leave some food scraps for the pack of Velociraptors keeping you warm. \nAfter walking for several hours, you spot a Yutyrannus in the distance. \nDo you ATTACK the creature, or try to BEFRIEND it?")
+            break;
+        case 'desert_landing':
+            console.log(`You lead your herd back in the direction towards the airplane. \nHowever, the temperature keeps dropping and the massive creatures are hungry. \nWithout provocation, the Spinosaurus quickly attacks you before the Triceratops can defend. \nIn the year 2032, scientists are perplexed by a recent discovery of a Spinosaurus fossil with human remains in its stomach. \n----GAME OVER----`)
+            rl.close()
+            break;
+        case 'Yutrannus_encounter':
+            console.log("Before you have a chance to act, the pack of Velociraptors attack the Yutyrannus with ferocous speed. \nWhile the raptors are feasting on its prey, you quickly walk off towards the airplane landing site. \nYou do not encounter any more dangerous fauna on the trip. \nDr. Williams is putting the final replacements on the time machine when you return. 'Where did our friendly herd go? No matter... we can't make the time machine any bigger. I'm sure it will work this time,' says Dr. Williams. \nDo you ENTER the time machine, or STAY in the Cretacous Period?")
+            break;
+        case 'New_York_City':
+            console.log(`As soon as you enter the machine, Dr. Williams pushes the big red button. \nA loud whoosh and blinding light appear before the machine powers down. 'Welcome to present day New York City,' says the speakerbox in a friendly voice. Dr. Williams lets out a deep breath and looks at you. '${player.name} I shoud thank you... you forced me to figure out and complete my machine under brutal circumstances. I'm reluctantly giving you credit for helping with my invention.' \n'Get some rest, and I'll see you in the near future,' says Dr. Williams. \n----GAME COMPLETE----\nThank you for playing Whinsley's Dr. Dino!`)
+            rl.close()
+            break;
+        case 'desert_stay':
+            console.log(`Dr. Williams gives you a puzzled look before shrugging his shoulders and entering the machine. 'Farewell ${player.name}! Stay safe and I hope to find your fossilized remains in modern Mongolia.' \nA bright, blinding light erupts from the machine and you are left standing in the desert. \n----GAME OVER----`)
+            rl.close()
             break;
 
         default:
@@ -251,67 +280,43 @@ function handleInput(input) {
                 player.location = 'pack_encounter'
             }
             break;
-        case '':
-            if (input.toLowerCase() === '') {
-                player.location = ''
-            } else if (input.toLowerCase() === '') {
-                player.location = ''
+        case 'desert':
+            if (input.toLowerCase() === 'explore') {
+                player.location = 'desert_exploration'
+            } else if (input.toLowerCase() === 'talk') {
+                player.location = 'desert_encounter'
             }
             break;
-        case '':
-            if (input.toLowerCase() === '') {
-                player.location = ''
-            } else if (input.toLowerCase() === '') {
-                player.location = ''
+        case 'desert_exploration':
+            if (input.toLowerCase() === 'stay') {
+                player.location = 'freezing_desert'
+            } else if (input.toLowerCase() === 'run') {
+                player.location = 'pack_encounter'
             }
             break;
-        case '':
-            if (input.toLowerCase() === '') {
-                player.location = ''
-            } else if (input.toLowerCase() === '') {
-                player.location = ''
+        case 'freezing_desert':
+            if (input.toLowerCase() === 'leave') {
+                player.location = 'ancient_China'
+            } else if (input.toLowerCase() === 'herd') {
+                player.location = 'desert_landing'
             }
             break;
-        case '':
-            if (input.toLowerCase() === '') {
-                player.location = ''
-            } else if (input.toLowerCase() === '') {
-                player.location = ''
+        case 'ancient_China':
+            if (input.toLowerCase() === 'attack' || input.toLowerCase() === 'befriend') {
+                player.location = 'Yutyrannus_encounter'
             }
             break;
-        case '':
-            if (input.toLowerCase() === '') {
-                player.location = ''
-            } else if (input.toLowerCase() === '') {
-                player.location = ''
+        case 'Yutyrannus_encounter':
+            if (input.toLowerCase() === 'enter') {
+                player.location = 'New_York_City'
+                player.time = 'Present Day'
+            } else if (input.toLowerCase() === 'stay') {
+                player.location = 'desert_stay'
             }
             break;
-        case '':
-            if (input.toLowerCase() === '') {
-                player.location = ''
-            } else if (input.toLowerCase() === '') {
-                player.location = ''
-            }
-            break;
-        case '':
-            if (input.toLowerCase() === '') {
-                player.location = ''
-            } else if (input.toLowerCase() === '') {
-                player.location = ''
-            }
-            break;
-        case '':
-            if (input.toLowerCase() === '') {
-                player.location = ''
-            } else if (input.toLowerCase() === '') {
-                player.location = ''
-            }
-            break;
-        case '':
-            if (input.toLowerCase() === '') {
-                player.location = ''
-            } else if (input.toLowerCase() === '') {
-                player.location = ''
+        case 'Morocco_landing_zone':
+            if (input.toLowerCase() === 'land') {
+                player.location = 'desert'
             }
             break;
 
