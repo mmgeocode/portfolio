@@ -29,8 +29,8 @@ Listed below are my software development bootcamp and independent projects
 ## Zorkington: Data Structures
 - Node.js
 
-## Whinsley's Text Adventure Game
-- Whinsley is a student in the 4th grade that I tutor. He loves dinosaurs and wanted to write a story about time travel back to the Jurassic and Cretaceous Period.
+## Dr. Dino: Whinsley's Text Adventure Game
+- Whinsley is a nine year old student in the 4th grade that I tutor. He loves dinosaurs and wanted to write a story about time travel back to the Jurassic and Cretaceous Period.
 - All of the dialog and decisions were created by him.
 - I wrote the code
 * Node.js
