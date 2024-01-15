@@ -63,8 +63,127 @@ a:hover {
     100% {transform: translateY(0);}
 }
 
-/* First Round ---------------------------------- */
+/* First & Second Round ---------------------------------- */
 
 .playerturn {
     display: flex;
+    justify-content: center;
+    /* padding: 1em; */
+    font-size: 20px;
 }
+
+.board {
+    display: grid;
+    grid-template-columns: 16vw 16vw 16vw 16vw 16vw 16vw;
+    background-color: black;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    height: 66vw;
+    width: 96vw;
+    margin-bottom: 3em;
+}
+
+.board > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #18168f;
+    border: 2px solid red;
+    border-radius: 5px;
+    width: 16vw;
+    height: 11vw;
+}
+
+.category {
+    font-size: 2vw;
+    flex: auto;
+}
+
+div[value] {
+    color: #EEBC1D;
+    font-size: 6vw;
+}
+
+div[value]:hover {
+    background-color: azure;
+}
+
+.answer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 1em;
+    margin-bottom: 1em;
+}
+
+.asnwer > input {
+    width: 50vw;
+    height: 20px;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1em;
+}
+
+.button a {
+    background-color: gray;
+    border: none;
+    border-radius: 5px;
+    color: black;
+    padding: 15px;
+    width: 150px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    margin: 1em;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    transform-origin: bottom;
+}
+
+.button a:hover {
+    animation-name: bounce;
+    animation-timing-function: ease;
+    background-color: green;
+}
+
+.score {
+    height: 50px;
+    margin-top: 1em;
+    display: flex;
+    justify-content: space-around;
+}
+
+.nextround {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    margin-right: 10%;
+}
+
+.nextround a {
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    color: black;
+    text-decoration: none;
+    margin-bottom: 1em;
+    font-size: 25px;
+    width: 100px;
+    padding: 1em;
+    text-align: center;
+    transition: background-color 2s ease-out 100ms;
+}
+
+.nextround a:hover {
+    background-color: #EEBC1D;
+}
+
+/* Modal ----------------- */
+
+
+
+/* Final Round ----------------- */
+
