@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="#">
+    <title>Jeopardy | Final Round</title>
+</head>
+<body>
+
+    <header id="header-final-jeopardy">
+        FINAL ROUND
+    </header>
+
+    <div class="playerturn">
+        <h3 id="status-player"></h3>
+    </div>
+
+    <div class="final">
+
+        <div class="final-category">
+          FINAL CATEGORY
+        </div>
+
+        <div class="final-question">
+          <p id="final-question-ask">FINAL QUESTION</p> 
+        </div>
+
+        <div class="final-answer">
+          <form action="">
+            <input type="text" id="player-final-answer" placeholder="Submit your final answer">
+          </form>
+        </div>
+
+        <div class="final-bet">
+          <form action="">
+            <input type="text" id="final-bet-amount" placeholder="Wager Amount?">
+          </form>
+        </div>
+
+        <div class="button">
+          <a id="wager-button">WAGER</a>
+        </div>
+  
+        <div class="status">
+          <h4 id="final-status">Player 1 input your answer and wager amount</h4>
+        </div>
+  
+        <div class="score">
+          <p>Player One Score: <span id="player1Score">0</span></p>
+          <p>Player Two Score: <span id="player2Score">0</span></p>
+        </div>
+  
+    </div>
+
+    <footer>
+        <h6>2023 by Mike Muncy for Upright Education</h6>
+    </footer>
+
+    <script src="./scripts/final-jeopardy.js" type="module"></script>
+    
+</body>
+</html>
