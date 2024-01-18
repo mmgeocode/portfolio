@@ -181,6 +181,31 @@ div[value]:hover {
     background-color: #EEBC1D;
 }
 
+.finalround {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    margin-right: 10%;
+}
+
+.finalround a {
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    color: black;
+    text-decoration: none;
+    margin-bottom: 1em;
+    font-size: 25px;
+    width: 100px;
+    padding: 1em;
+    text-align: center;
+    transition: background-color 2s ease-out 100ms;
+}
+
+.finalround a:hover {
+    background-color: #EEBC1D;
+}
+
 /* Modal ----------------- */
 
 .modal {
@@ -198,6 +223,7 @@ div[value]:hover {
 .modal-content {
     position: relative;
     background-color: white;
+    color: black;
     border-radius: 5px;
     padding: 20px;
     margin: auto;
