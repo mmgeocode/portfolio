@@ -57,12 +57,12 @@ function massReset() {
 }
 
 // Round 2 Questions -----------------------------------------------------------
-const natureQuestions = placeholderQuestions.filter(question => question.category === "Nature")
-const animalsQuestions = placeholderQuestions.filter(question => question.category === "Animals")
-const computersQuestions = placeholderQuestions.filter(question => question.category === "Computers")
-const mythologyQuestions = placeholderQuestions.filter(question => question.category === "Mythology")
-const historyQuestions = placeholderQuestions.filter(question => question.category === "History")
-const generalQuestions = placeholderQuestions.filter(question => question.category === "General")
+const natureQuestions = placeholderQuestions.filter(question => question.category === "Nature").slice(5)
+const animalsQuestions = placeholderQuestions.filter(question => question.category === "Animals").slice(5)
+const computersQuestions = placeholderQuestions.filter(question => question.category === "Computers").slice(5)
+const mythologyQuestions = placeholderQuestions.filter(question => question.category === "Mythology").slice(5)
+const historyQuestions = placeholderQuestions.filter(question => question.category === "History").slice(5)
+const generalQuestions = placeholderQuestions.filter(question => question.category === "General").slice(5)
 
 const natureDiv = document.querySelectorAll(".nature")
 const animalsDiv = document.querySelectorAll(".animals")
