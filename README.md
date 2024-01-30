@@ -23,6 +23,10 @@ Listed below are my software development bootcamp and independent projects
 ## Jeopardy
 - HTML, CSS, JavaScript
 
+**Start** on the 'index.html' and click start game and be routed to 'round-1.html'
+
+**Select** a question when it is either player 1 or player 2's turn
+
 ## Guess the Number: JavaScript Fundamentals
 - Node.js
 

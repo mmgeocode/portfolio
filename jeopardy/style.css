@@ -7,8 +7,9 @@ body {
 header {
     display: flex;
     justify-content: center;
-    margin-top: 1em;
-    margin-bottom: 1em;
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+    height: 60px;
 }
 
 footer {
@@ -67,20 +68,27 @@ a:hover {
 
 .playerturn {
     display: flex;
+    padding: 0;
     justify-content: center;
+    align-items: center;
     /* padding: 1em; */
-    font-size: 20px;
+    font-size: 16px;
+    height: 30px;
 }
 
 .board {
     display: grid;
-    grid-template-columns: 16vw 16vw 16vw 16vw 16vw 16vw;
+    justify-content: center;
+    align-items: center;
+    /* grid-template-columns: 16vw 16vw 16vw 16vw 16vw 16vw; */
+    grid-template-columns: 103px 103px 103px 103px 103px 103px;
     background-color: black;
-    margin-left: 1.5vw;
-    margin-right: 1.5vw;
-    height: 70vw;
-    width: 96.5vw;
-    margin-bottom: 3em;
+    /* margin-left: 1.5vw; */
+    /* margin-right: 1.5vw; */
+    margin: auto;
+    height: 471px;
+    width: 618px;
+    margin-bottom: 1em;
 }
 
 .board > div {
@@ -88,20 +96,21 @@ a:hover {
     justify-content: center;
     align-items: center;
     background-color: #18168f;
-    border: 2px solid black;
+    /* border: 3px solid yellow; */
     border-radius: 10px;
-    width: 16vw;
-    height: 11vw;
+    width: 100px;
+    height: 75px;
+    margin-left: 1px;
 }
 
 .category {
-    font-size: 2vw;
+    font-size: 1rem;
     flex: auto;
 }
 
 div[value] {
     color: #EEBC1D;
-    font-size: 6vw;
+    font-size: 2rem;
 }
 
 div[value]:hover {
@@ -209,7 +218,7 @@ div[value]:hover {
 .modal {
     display: none;
     position: fixed;
-    padding-top: 50px;
+    /* padding-top: 50px; */
     left: 0;
     top: 0;
     width: 100%;
