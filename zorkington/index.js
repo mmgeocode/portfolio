@@ -12,15 +12,18 @@ const ask = q => {
 
 // Class Constructor
 class Room {
-    constructor(name, description, inventory) {
+    constructor(name, description, inventory, lock, imobject, imobjdesc) {
         this.name = name
         this.description = description
         this.inventory = inventory
+        this.lock = lock
+        this.imobject = imobject
+        this.imobjdesc = imobjdesc
     }
 }
 
-const start = new Room("start", "This is the starting room", ['bicycle'])
-const middle = new Room("middle", "This is the middle room", [])
+const start = new Room("start", "This is the starting room", ['bicycle'], false, 'note', '1234')
+const middle = new Room("middle", "This is the middle room", [], true, "note", "1234")
 const exit = new Room("exit", "This is the exit room", [])
 
 // State Machines
@@ -45,7 +48,9 @@ const locationStates = {
 
 // Move Location Function
 function moveLocation(newLocation) {
-    if (locationStates[locationCurrent].includes(newLocation)) {
+    if (locationLookup[newLocation].lock == true) {
+        console.log(`The door is locked`)
+    } else if (locationStates[locationCurrent].includes(newLocation)) {
         locationCurrent = newLocation
     } else {
         console.log(`Cannot go from ${locationCurrent} to ${newLocation}`)
@@ -55,8 +60,8 @@ function moveLocation(newLocation) {
 
 // Search Location Function
 function searchLocation(locationCurrent) {
-    if (locationLookup[locationCurrent].inventory) {
-        console.log(`You see ${locationLookup[locationCurrent].inventory}`)
+    if (locationLookup[locationCurrent].inventory.length > 0) {
+        console.log(`You see ${locationLookup[locationCurrent].inventory.join(", ")}`)
     } else {
         console.log(`You don't find anything`)
     }
@@ -66,7 +71,7 @@ function searchLocation(locationCurrent) {
 // Check Inventory Function
 function checkInventory() {
     if (player.inventory.length > 0) {
-        console.log(`Inventory: ${player.inventory}`)
+        console.log(`Inventory: ${player.inventory.join(", ")}`)
     } else {
         console.log(`There is nothing in your inventory`)
     }
@@ -74,7 +79,16 @@ function checkInventory() {
 }
 
 // Take Item Function
-
+function takeItem(item) {
+    if (locationLookup[locationCurrent].inventory.includes(item)) {
+        locationLookup[locationCurrent].inventory = locationLookup[locationCurrent].inventory.filter(i => i !== item)
+        player.inventory.push(item)
+        console.log(`You picked up ${item}`)
+    } else {
+        console.log(`You can't pick that up`)        
+    }
+    askInput()
+}
 
 // Drop Item Inventory
 function dropItem(item) {
@@ -84,6 +98,32 @@ function dropItem(item) {
         console.log(`You drop ${item} in ${locationCurrent}`)
     } else {
         console.log(`You can't drop that`)
+    }
+    askInput()
+}
+
+// Examine Immutable Object Function
+function examineObject(object) {
+    if (locationLookup[locationCurrent].imobject.includes(object)) {
+        console.log(`${locationLookup[locationCurrent].imobjdesc}`)
+    } else {
+        console.log(`Nothing to examine`)
+    }
+    askInput()
+}
+
+// Unlock Door
+async function unlockDoor(room) {
+    if (locationStates[locationCurrent].includes(room) && locationLookup[room].lock == true) {
+        lockResponse = await ask(`What is the correct code: `)
+        if (lockResponse == locationLookup[room].imobjdesc) {
+            locationLookup[room].lock = false
+            console.log(`The door is now unlocked`)
+        } else {
+            console.log(`The code combination is incorrect`)
+        }
+    } else {
+        console.log(`The door is already unlocked`)
     }
     askInput()
 }
@@ -105,6 +145,12 @@ async function askInput() {
             checkInventory()
         } else if (answer[0] === 'drop') {
             dropItem(answer[1])
+        } else if (answer[0] === 'take') {
+            takeItem(answer[1])
+        } else if (answer[0] === 'examine') {
+            examineObject(answer[1])
+        } else if (answer[0] === 'unlock') {
+            unlockDoor(answer[1])
         } else {
             console.log(`Error`)
             askInput()
