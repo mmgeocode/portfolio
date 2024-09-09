@@ -12,19 +12,23 @@ const ask = q => {
 
 // Class Constructor
 class Room {
-    constructor(name, description, inventory, lock, imobject, imobjdesc) {
+    constructor(name, description, inventory, lock, lockCode, roomObject, roomObjectDescription, itemLock, itemLockKey, itemLockDescription) {
         this.name = name
         this.description = description
         this.inventory = inventory
         this.lock = lock
-        this.imobject = imobject
-        this.imobjdesc = imobjdesc
+        this.lockCode = lockCode
+        this.roomObject = roomObject
+        this.roomObjectDescription = roomObjectDescription
+        this.itemLock = itemLock
+        this.itemLockKey = itemLockKey
+        this.itemLockDescription = itemLockDescription
     }
 }
 
-const start = new Room("start", "This is the starting room", ['bicycle'], false, 'note', '1234')
-const middle = new Room("middle", "This is the middle room", [], true, "note", "1234")
-const exit = new Room("exit", "This is the exit room", [])
+const start = new Room("start", "This is the starting room", ['bolt'], false, null, 'note', '1234', false, null, null)
+const middle = new Room("middle", "This is the middle room", [], true, "1234", null, null, false, null, null)
+const exit = new Room("exit", "This is the exit room", [], false, null, null, null, true, 'bolt', 'Place for a bolt')
 
 // State Machines
 let locationCurrent = "start"
@@ -48,7 +52,7 @@ const locationStates = {
 
 // Move Location Function
 function moveLocation(newLocation) {
-    if (locationLookup[newLocation].lock == true) {
+    if (locationLookup[newLocation].lock == true || locationLookup[newLocation].itemLock == true) {
         console.log(`The door is locked`)
     } else if (locationStates[locationCurrent].includes(newLocation)) {
         locationCurrent = newLocation
@@ -116,15 +120,37 @@ function examineObject(object) {
 async function unlockDoor(room) {
     if (locationStates[locationCurrent].includes(room) && locationLookup[room].lock == true) {
         lockResponse = await ask(`What is the correct code: `)
-        if (lockResponse == locationLookup[room].imobjdesc) {
+        if (lockResponse == locationLookup[room].lockCode) {
             locationLookup[room].lock = false
             console.log(`The door is now unlocked`)
         } else {
             console.log(`The code combination is incorrect`)
         }
+    } else if (locationStates[locationCurrent].includes(room) && locationLookup[room].itemLock == true) {
+            console.log(`${locationLookup[room].itemLockDescription}`)
+            itemLockResponse = await ask(`What item do you use with the lock?: `)
+            if (player.inventory.includes(itemLockResponse)) {
+                locationLookup[room].itemLock = false
+                console.log('The door is now unlocked')
+                player.inventory = player.inventory.filter(i => i !== itemLockResponse)
+            } else {
+                console.log('That item is not in your inventory')
+            }
     } else {
         console.log(`The door is already unlocked`)
     }
+    askInput()
+}
+
+// Help Function
+function helpPlayer() {
+    console.log('type MOVE + ROOM NAME to move between rooms')
+    console.log('type SEARCH to search the current room')
+    console.log('type INVENTORY to check your inventory')
+    console.log('type TAKE + ITEM NAME to pick up an item from the room')
+    console.log('type DROP + ITEM NAME to drop an item into the current room')
+    console.log('type UNLOCK + ROOM NAME to attempt unlocking a locked door')
+    console.log('type HELP to see this explanation again')
     askInput()
 }
 
@@ -135,7 +161,7 @@ async function askInput() {
         process.exit()
     } else {
         console.log(`You're at the ${locationLookup[locationCurrent].name} and it's ${locationLookup[locationCurrent].description}`)
-        response = await ask(`>_`)
+        response = await ask(`Input your action. Type 'help' for a list of actions.\n>_`)
         answer = response.toLowerCase().split(' ')
         if (answer[0] === 'move') {
             moveLocation(answer[1])
@@ -151,6 +177,8 @@ async function askInput() {
             examineObject(answer[1])
         } else if (answer[0] === 'unlock') {
             unlockDoor(answer[1])
+        } else if (answer[0] === 'help') {
+            helpPlayer()
         } else {
             console.log(`Error`)
             askInput()
