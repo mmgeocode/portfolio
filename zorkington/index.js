@@ -37,7 +37,13 @@ const living = new Room('living', "You have never seen so many types of wood pan
 
 const guest = new Room('guest', "If any guests have ever stayed here before, the most likely would have been disturbed by the gothic decor. Black stone covered the floors, walls, and ceiling complete with black metal spikes. You dare not attempt to lie down on the charcoal colored bed. There may be something in the nightstands.", ['keycard'], false, null, null, null, true, 'carrot', 'There is a sculpture of a rabbit with an open mouth where the doorhandle should be. Place something in the mouth?: ')
 
-const bathroom = new Room("bathroom", "This is the exit room", [], false, null, null, null, true, 'key', 'A keyhole')
+const garage = new Room('garage', "Most garages contain a variety of cars, tools, and/or storage... this one contains dolls. Yup.... dolls. There is no garage door... just multiple shelves spaning across the four walls that are hoisting dolls. Thankfully, none of the doll heads move or talk. Located in the center is an intricate golden CHEST.", ['eyeballs'], false, null, 'chest', 'Upon opening the intricate golden chest, you see several jars that contain eyeballs floating in a blue liquid.', true, 'keycard', "There appears to be an RFID card scanner above the doorhandle. What do you use with the scanner?: ")
+
+const office = new Room('office', "There is a single tabletop DESK located perfectly in the center. White walls, gray short carpet, and the hum of flouresnt light. Your body shivers at the sight of this bland, sterile office space.", ['glasses'], false, null, 'desk', "Various TPS reports, gant charts, and memo's about being a family are scatterd on top of the desk. There are also various utencils to help with reading.", true, 'eyeballs', 'The door is a massive steel door that looks like a bank vault. Positioned in the center is what appears to be a retina scanner. The scanner does not reconigize your eyes. Use which item: ')
+
+const bathroom = new Room("bathroom", "This water closet appears to be identical to the Iternational Space Station facility seen in photographs. This is not a very comfortable spot to relieve oneself or take a shower. The MIRROR hanging above the sink seems very out of place with its anitique gold frame.", [], false, null, 'mirror', 'The mirror appears to be a spining vortex of rainbow colors. You see your shiloutte in the mirror but... what color am I?', true, 'glasses', 'There is a standard wood door that leads to the bathroom. After knocking on the door, you hear a faint voice saying, "it is not fair!!!" To the right of the door, sits a small statue of a man trying to read a book.')
+
+const mirror = new Room('mirror', "The mirror pulls you in like water circling a drain... everything goes dark.", [], true, 'roygbiv', null, null, null, null, null)
 
 // State Machines
 let locationCurrent = "bedroom"
@@ -50,18 +56,25 @@ const player = {
 const locationLookup = {
     bedroom,
     hallway,
+    guest,
+    office,
     kitchen,
     living,
-    bathroom
+    garage,
+    bathroom,
+    mirror
 }
 
 const locationStates = {
     bedroom: ["hallway"],
-    hallway: ["bedroom", "bathroom", "kitchen", "living", "guest"],
+    hallway: ["bedroom", "bathroom", "kitchen", "living", "guest", "office"],
     guest: ["hallway"],
+    office: ["hallway"],
     kitchen: ["hallway", "living", "garage"],
     living: ["hallway", "kitchen"],
-    bathroom: ["hallway"]
+    garage: ["kitchen"],
+    bathroom: ["hallway", "mirror"],
+    mirror: ["bathroom"]
 }
 
 // Move Location Function
@@ -171,7 +184,7 @@ function helpPlayer() {
 
 // Ask for input from player
 async function askInput() {
-    if (locationCurrent === 'exit') {
+    if (locationCurrent === 'mirror') {
         console.log(`Congratulations ${player.name}! You found the exit`)
         process.exit()
     } else {
