@@ -1,5 +1,6 @@
 // Readline
 const { read } = require("fs")
+const { wrap } = require("module")
 const { resolve } = require("path")
 const readline = require("readline")
 const rl = readline.createInterface({ input: process.stdin, output: process.stdout })
@@ -76,6 +77,10 @@ const locationStates = {
     bathroom: ["hallway", "mirror"],
     mirror: ["bathroom"]
 }
+
+// Word Wrap Function
+
+const wordWrap = (str) => str.replace(/(?![^\n]{1,80}$)([^\n]{1,80})\s/g, '$1\n')
 
 // Move Location Function
 function moveLocation(newLocation) {
@@ -188,7 +193,7 @@ async function askInput() {
         console.log(`Congratulations ${player.name}! You found the exit`)
         process.exit()
     } else {
-        console.log(`You're in the ${locationLookup[locationCurrent].name}. ${locationLookup[locationCurrent].description}`)
+        console.log(`Current Location: ${locationLookup[locationCurrent].name}\n${locationLookup[locationCurrent].description}`)
         response = await ask(`Input your action. Type 'help' for a list of actions.\n>_`)
         answer = response.toLowerCase().split(' ')
         console.clear()
@@ -217,11 +222,11 @@ async function askInput() {
 
 // Game Start Function
 async function gameStart() {
-    console.log(`The Scary Door: Version 0.2`)
-    console.log(`You wake up in a strange bedroom you have never seen before. The last thing you remember is eating the "Froot" salad from Fishy Joe's. A strange uneasyness feeling sinks in your stomach... "I've got to get out of here," you think to yourself.`)
-    const nameQuestion = await ask('But first... what is my name?: ')
+    console.log(`The Scary Door: Version 0.3`)
+    console.log(wordWrap(`You wake up in a strange bedroom you have never seen before. As the groginess begins to fade, you realize the last thing you remember is eating the "Froot" salad from Fishy Joe's. A strange uneasy feeling sinks in your stomach... "I've got to get out of here," is the only though repeating in your head.`))
+    const nameQuestion = await ask('You then realize... what even is my name?: ')
     player.name = nameQuestion
-    console.log(`Good luck ${player.name}!`)
+    console.log(`Good luck ${player.name}! Escape from this strange place`)
     askInput()
 }
 
