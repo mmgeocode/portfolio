@@ -79,8 +79,17 @@ const locationStates = {
 }
 
 // Word Wrap Function
-
 const wordWrap = (str) => str.replace(/(?![^\n]{1,80}$)([^\n]{1,80})\s/g, '$1\n')
+
+// Display location at bottom
+function displayLocationAtBottom() {
+    const rows = process.stdout.rows - 2
+    process.stdout.write(`\u001b[${rows};1H\u001b[32m`)
+    let currentLoc = locationLookup[locationCurrent].name
+    let upperLoc = currentLoc.toUpperCase()
+    console.log(`CURRENT LOCATION: ${upperLoc}`)
+    process.stdout.write(`\u001b[0m`)
+}
 
 // Move Location Function
 function moveLocation(newLocation) {
@@ -193,7 +202,12 @@ async function askInput() {
         console.log(`Congratulations ${player.name}! You found the exit`)
         process.exit()
     } else {
-        console.log(`Current Location: ${locationLookup[locationCurrent].name}\n${locationLookup[locationCurrent].description}`)
+        // const rows = process.stdout.rows
+        // let currentLoc = locationLookup[locationCurrent].name
+        // let upperLoc = currentLoc.toUpperCase()
+        // console.log(`\u001b[${rows}] CURRENT LOCATION: ${upperLoc}`)
+        console.log(wordWrap(`${locationLookup[locationCurrent].description}`))
+        displayLocationAtBottom()
         response = await ask(`Input your action. Type 'help' for a list of actions.\n>_`)
         answer = response.toLowerCase().split(' ')
         console.clear()
@@ -217,15 +231,17 @@ async function askInput() {
             console.log(`Error`)
             askInput()
         }
+        // displayLocationAtBottom()
     }
 }
 
 // Game Start Function
 async function gameStart() {
-    console.log(`The Scary Door: Version 0.3`)
+    console.log(`The Scary Door: Version 0.4`)
     console.log(wordWrap(`You wake up in a strange bedroom you have never seen before. As the groginess begins to fade, you realize the last thing you remember is eating the "Froot" salad from Fishy Joe's. A strange uneasy feeling sinks in your stomach... "I've got to get out of here," is the only though repeating in your head.`))
     const nameQuestion = await ask('You then realize... what even is my name?: ')
     player.name = nameQuestion
+    console.clear()
     console.log(`Good luck ${player.name}! Escape from this strange place`)
     askInput()
 }
