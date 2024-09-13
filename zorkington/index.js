@@ -1,7 +1,7 @@
 // Readline
-const { read } = require("fs")
-const { wrap } = require("module")
-const { resolve } = require("path")
+// const { read } = require("fs")
+// const { wrap } = require("module")
+// const { resolve } = require("path")
 const readline = require("readline")
 const rl = readline.createInterface({ input: process.stdin, output: process.stdout })
 
@@ -93,12 +93,14 @@ function displayLocationAtBottom() {
 
 // Move Location Function
 function moveLocation(newLocation) {
-    if (locationLookup[newLocation].lock == true || locationLookup[newLocation].itemLock == true) {
-        console.log(`The door is locked`)
-    } else if (locationStates[locationCurrent].includes(newLocation)) {
-        locationCurrent = newLocation
+    if (locationStates[locationCurrent].includes(newLocation)) {
+        if (locationLookup[newLocation].lock == true || locationLookup[newLocation].itemLock == true) {
+            console.log(`\u001b[33mThe door is locked\u001b[0m`)
+        } else {
+            locationCurrent = newLocation
+        }
     } else {
-        console.log(`Cannot go from ${locationCurrent} to ${newLocation}`)
+        console.log(`\u001b[31mCannot go from ${locationCurrent} to ${newLocation} from here\u001b[0m`)
     }
     askInput()
 }
@@ -106,9 +108,9 @@ function moveLocation(newLocation) {
 // Search Location Function
 function searchLocation(locationCurrent) {
     if (locationLookup[locationCurrent].inventory.length > 0) {
-        console.log(`You see ${locationLookup[locationCurrent].inventory.join(", ")}`)
+        console.log(`\u001b[36mYou search and find: ${locationLookup[locationCurrent].inventory.join(", ")}\u001b[0m`)
     } else {
-        console.log(`You don't find anything`)
+        console.log(`\u001b[33mYou don't find anything\u001b[0m`)
     }
     askInput()
 }
@@ -116,9 +118,9 @@ function searchLocation(locationCurrent) {
 // Check Inventory Function
 function checkInventory() {
     if (player.inventory.length > 0) {
-        console.log(`Inventory: ${player.inventory.join(", ")}`)
+        console.log(`\u001b[36mInventory: ${player.inventory.join(", ")}\u001b[0m`)
     } else {
-        console.log(`There is nothing in your inventory`)
+        console.log(`\u001b[33mThere is nothing in your inventory\u001b[0m`)
     }
     askInput()
 }
@@ -128,9 +130,9 @@ function takeItem(item) {
     if (locationLookup[locationCurrent].inventory.includes(item)) {
         locationLookup[locationCurrent].inventory = locationLookup[locationCurrent].inventory.filter(i => i !== item)
         player.inventory.push(item)
-        console.log(`You picked up ${item}`)
+        console.log(`\u001b[36mYou picked up ${item}\u001b[0m`)
     } else {
-        console.log(`You can't pick that up`)        
+        console.log(`\u001b[33mYou can't pick that up\u001b[0m`)        
     }
     askInput()
 }
@@ -140,9 +142,9 @@ function dropItem(item) {
     if (player.inventory.includes(item)) {
         player.inventory = player.inventory.filter(i => i !== item)
         locationLookup[locationCurrent].inventory.push(item)
-        console.log(`You drop ${item} in ${locationCurrent}`)
+        console.log(`\u001b[36mYou drop ${item} in ${locationCurrent}\u001b[0m`)
     } else {
-        console.log(`You can't drop that`)
+        console.log(`\u001b[33mYou can't drop that\u001b[0m`)
     }
     askInput()
 }
@@ -150,35 +152,41 @@ function dropItem(item) {
 // Examine Immutable Object Function
 function examineObject(object) {
     if (locationLookup[locationCurrent].roomObject.includes(object)) {
-        console.log(`${locationLookup[locationCurrent].roomObjectDescription}`)
+        console.log(wordWrap(`\u001b[35m${locationLookup[locationCurrent].roomObjectDescription}\u001b[0m`))
     } else {
-        console.log(`You find nothing to examine`)
+        console.log(`\u001b[33mYou find nothing to examine\u001b[0m`)
     }
     askInput()
 }
 
 // Unlock Door
 async function unlockDoor(room) {
-    if (locationStates[locationCurrent].includes(room) && locationLookup[room].lock == true) {
-        lockResponse = await ask(`What is the password: `)
-        if (lockResponse == locationLookup[room].lockCode) {
-            locationLookup[room].lock = false
-            console.log(`The door is now unlocked`)
-        } else {
-            console.log(`The code combination is incorrect`)
-        }
-    } else if (locationStates[locationCurrent].includes(room) && locationLookup[room].itemLock == true) {
-            console.log(`${locationLookup[room].itemLockDescription}`)
-            itemLockResponse = await ask(`What item do you use with the lock?: `)
-            if (player.inventory.includes(itemLockResponse)) {
-                locationLookup[room].itemLock = false
-                console.log('The door is now unlocked')
-                player.inventory = player.inventory.filter(i => i !== itemLockResponse)
+    if (locationLookup[room]) {
+        if (locationStates[locationCurrent].includes(room) && locationLookup[room].lock == true) {
+            lockResponse = await ask(`What is the password: `)
+            if (lockResponse == locationLookup[room].lockCode) {
+                locationLookup[room].lock = false
+                console.log(`\u001b[36mThe door is now unlocked\u001b[0m`)
             } else {
-                console.log('That item is not in your inventory')
+                console.log(`\u001b[31mThe code combination is incorrect\u001b[0m`)
             }
+        } else if (locationStates[locationCurrent].includes(room) && locationLookup[room].itemLock == true) {
+                console.log(`${locationLookup[room].itemLockDescription}`)
+                itemLockResponse = await ask(`What item do you use with the lock?: `)
+                if (player.inventory.includes(itemLockResponse)) {
+                    locationLookup[room].itemLock = false
+                    console.log('\u001b[36mThe door is now unlocked\u001b[0m')
+                    player.inventory = player.inventory.filter(i => i !== itemLockResponse)
+                } else {
+                    console.log('\u001b[33mThat item is not in your inventory\u001b[0m')
+                }
+        } else if (!locationStates[locationCurrent].includes(room)) {
+            console.log(`\u001b[31mYou can't unlock that here\u001b[0m`)
+        } else {
+            console.log(`\u001b[36mThe door is already unlocked\u001b[0m`)
+        }
     } else {
-        console.log(`The door is already unlocked`)
+        console.log(`\u001b[31mInvalid Room Name\u001b[0m`)
     }
     askInput()
 }
@@ -192,7 +200,6 @@ function helpPlayer() {
     console.log('type TAKE + ITEM NAME to pick up an item from the room')
     console.log('type DROP + ITEM NAME to drop an item into the current room')
     console.log('type UNLOCK + ROOM NAME to attempt unlocking a locked door')
-    console.log('type HELP to see this explanation again')
     askInput()
 }
 
@@ -202,10 +209,6 @@ async function askInput() {
         console.log(`Congratulations ${player.name}! You found the exit`)
         process.exit()
     } else {
-        // const rows = process.stdout.rows
-        // let currentLoc = locationLookup[locationCurrent].name
-        // let upperLoc = currentLoc.toUpperCase()
-        // console.log(`\u001b[${rows}] CURRENT LOCATION: ${upperLoc}`)
         console.log(wordWrap(`${locationLookup[locationCurrent].description}`))
         displayLocationAtBottom()
         response = await ask(`Input your action. Type 'help' for a list of actions.\n>_`)
@@ -228,10 +231,9 @@ async function askInput() {
         } else if (answer[0] === 'help') {
             helpPlayer()
         } else {
-            console.log(`Error`)
+            console.log(`\u001b[31mError: Invalid Action\u001b[0m`)
             askInput()
         }
-        // displayLocationAtBottom()
     }
 }
 
