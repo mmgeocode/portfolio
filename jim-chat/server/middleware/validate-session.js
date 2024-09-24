@@ -5,7 +5,7 @@ const validateSession = async (req, res, next) => {
     try {
         const token = req.headers.authorization
         console.log("token", token)
-        const decodedToken = jwt.verify(token, process.env.JWT_JIM)
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET)
         console.log("decodedToken", decodedToken)
         const user = await User.findById(decodedToken.id)
 
