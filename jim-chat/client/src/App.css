@@ -1,0 +1,91 @@
+/* .App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
+
+/* ! App Styling */
+:root {
+  --primary: #6DA9E4;
+  --secondary: #F6BA6F;
+  --backgroundColor: #ADE4DB;
+  --neutral: #FFEBEB;
+}
+
+body {
+  background: var(--backgroundColor);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.primary-background {
+  background: var(--primary)
+}
+
+.secondary-background {
+  background: var(--secondary);
+}
+
+.neutral-background {
+  background: var(--neutral);
+}
+
+.font-primary {
+  font-family: "Arial Rounded MT", bold;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+header {
+  height: 100px;
+  background-color: var(--primary);
+}
+
+/* --- UI --- */
+.jim-button {
+  background-color: var(--backgroundColor);
+  padding: 10px;
+  color: rgb(3, 0, 0);
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+.jim-button:hover {
+  opacity: 0.8;
+}
