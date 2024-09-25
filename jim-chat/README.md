@@ -1,6 +1,10 @@
 # JiM Chat
 
 ## Overview
+- J: Jacob
+- i: Isaiah
+- M: Mike
+- Chat Application
 
 ## Initial Setup of Server
 - `npm init -y`
