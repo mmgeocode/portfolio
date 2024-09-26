@@ -1,9 +1,9 @@
-import logo from './logo.svg';
 import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import './App.css';
 import Auth from './components/authorization-section/Auth'
 import MainHeader from './components/header-section/MainHeader'
+import NavigationBar from './components/navigation-section/NavigationBar';
 import MainIndex from './components/main-section/MainIndex';
 
 function App() {
@@ -24,26 +24,11 @@ function App() {
   }, [])
 
   return (
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
-
     <div>
       <MainHeader />
+      <NavigationBar />
       <Routes>
+        <Route path='/auth' element={<Auth updateToken={updateToken} /> } />
         <Route path='/feed' element={<MainIndex token={token} />} />
       </Routes>
     </div>

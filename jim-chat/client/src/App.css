@@ -1,43 +1,4 @@
-/* .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
-
-/* ! App Styling */
+/* --- ROOT --- */
 :root {
   --primary: #6DA9E4;
   --secondary: #F6BA6F;
@@ -89,3 +50,27 @@ header {
 .jim-button:hover {
   opacity: 0.8;
 }
+
+/* --- NAVBAR --- */
+.navbar {
+  background-color: var(--backgroundColor);
+}
+
+/* --- Authorization --- */
+.login-register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form {
+  display: flex;
+  justify-content: center;
+}
+
+.register-form {
+  display: flex;
+  justify-content: center;
+}
+
+/* --- Main --- */
