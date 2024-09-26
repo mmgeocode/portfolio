@@ -4,14 +4,21 @@ import './App.css';
 import Auth from './components/authorization-section/Auth'
 import MainHeader from './components/header-section/MainHeader'
 import NavigationBar from './components/navigation-section/NavigationBar';
+import WelcomeIndex from './components/main-section/WelcomeIndex';
 import MainIndex from './components/main-section/MainIndex';
 
 function App() {
   const [token, setToken] = useState("")
+  const [currentId, setCurrentId] = useState("");
 
   function updateToken(newToken) {
     setToken(newToken)
     localStorage.setItem("token", newToken)
+  }
+
+  function updateCurrentId(newCurrentId) {
+    setCurrentId(newCurrentId)
+    localStorage.setItem("CurrentId", newCurrentId)
   }
 
   useEffect(() => {
@@ -23,13 +30,23 @@ function App() {
 
   }, [])
 
+  useEffect(() => {
+    const currentId = localStorage.getItem("CurrentId");
+
+    if (currentId) {
+      setCurrentId(currentId)
+    }
+
+  }, []);
+
   return (
     <div>
       <MainHeader />
       <NavigationBar />
       <Routes>
-        <Route path='/auth' element={<Auth updateToken={updateToken} /> } />
-        <Route path='/feed' element={<MainIndex token={token} />} />
+        <Route path='/' element={<WelcomeIndex token={token} currentId={currentId} />} />
+        <Route path='/auth' element={<Auth updateToken={updateToken} updateCurrentId={updateCurrentId} /> } />
+        <Route path='/feed/:id' element={<MainIndex token={token} currentId={currentId} />} />
       </Routes>
     </div>
   );

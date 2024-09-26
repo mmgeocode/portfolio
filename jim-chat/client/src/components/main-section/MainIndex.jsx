@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { API_VIEW_ALL_ROOMS } from '../../constants/endpoints';
 import { Col, Container, Row } from 'reactstrap';
+import RoomFeed from './RoomFeed';
 
 function MainIndex(props) {
-    const [roomItems, setRoomItems] = useState([]);
+    const [roomFeedItem, setRoomFeedItem] = useState([]);
+    const [userId, setUserId] = useState("");
 
-    async function fetchRooms() {
+    async function fetchRoomFeed() {
         try {
             // Headers
             const myHeaders = new Headers()
@@ -21,7 +23,8 @@ function MainIndex(props) {
             const data = await response.json()
 
             // Set State
-            setRoomItems(data.rooms.reverse())
+            setRoomFeedItem(data.rooms.reverse())
+            setUserId(data.userId)
 
         } catch (error) {
             console.error(error)
@@ -30,7 +33,7 @@ function MainIndex(props) {
 
     useEffect(() => {
         if (!props.token) return;
-        fetchRooms();
+        fetchRoomFeed();
     }, [props.token]);
 
     return (
@@ -40,6 +43,14 @@ function MainIndex(props) {
                 <Row>
                     <Col>
                         {/* <RoomCreate token={props.token} fetchRooms={fetchRooms}/> */}
+                    </Col>
+                    <Col>
+                        <RoomFeed 
+                        roomFeedItem={roomFeedItem}
+                        token={props.token}
+                        fetchRoomFeed={fetchRoomFeed}
+                        userId={userId}
+                        />
                     </Col>
                 </Row>
             </Container>
