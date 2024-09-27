@@ -6,6 +6,7 @@ import MainHeader from './components/header-section/MainHeader'
 import NavigationBar from './components/navigation-section/NavigationBar';
 import WelcomeIndex from './components/main-section/WelcomeIndex';
 import MainIndex from './components/main-section/MainIndex';
+import RoomView from './components/main-section/RoomView';
 
 function App() {
   const [token, setToken] = useState("")
@@ -47,6 +48,7 @@ function App() {
         <Route path='/' element={<WelcomeIndex token={token} currentId={currentId} />} />
         <Route path='/auth' element={<Auth updateToken={updateToken} updateCurrentId={updateCurrentId} /> } />
         <Route path='/feed/:id' element={<MainIndex token={token} currentId={currentId} />} />
+        <Route path='/message/room/:id' element={<RoomView token={token} currentId={currentId} />} />
       </Routes>
     </div>
   );

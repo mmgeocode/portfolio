@@ -2,13 +2,17 @@ import React, { useState } from 'react';
 import { Form, FormGroup, Label, Input } from 'reactstrap'
 import JiMButton from '../../ui/JiMButton';
 import { API_USER_CREATE } from "../../constants/endpoints";
+import { useNavigate } from 'react-router-dom';
 
 function Register(props) {
-    const [userName, setUsername] = useState("username here")
+    const [userName, setUsername] = useState("username here");
     const [email, setEmail] = useState("email here");
     const [password, setPassword] = useState("password here");
+    const navigate = useNavigate();
     
-    async function handleSubmit() {
+    async function handleSubmit(evt) {
+        evt.preventDefault();
+
         try {
             // Headers
             let myHeaders = new Headers()
@@ -34,7 +38,12 @@ function Register(props) {
             // Get Response
             const data = await response.json()
 
+            // Update Token
             props.updateToken(data.token)
+            props.updateCurrentId(data.user._id)
+
+            // Navigate to Main
+            navigate("/")
 
         } catch (error) {
             console.error(error)

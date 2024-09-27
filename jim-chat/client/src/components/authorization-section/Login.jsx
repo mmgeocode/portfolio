@@ -38,7 +38,7 @@ function Login(props) {
             props.updateToken(data.token)
 
             // Navigate to Main
-            navigate("/feed")
+            navigate("/feed/" + data.user._id)
 
         } catch (error) {
             console.error(error)

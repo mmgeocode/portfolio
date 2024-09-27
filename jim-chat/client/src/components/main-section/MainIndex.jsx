@@ -4,10 +4,10 @@ import { Col, Container, Row } from 'reactstrap';
 import RoomFeed from './RoomFeed';
 
 function MainIndex(props) {
-    const [roomFeedItem, setRoomFeedItem] = useState([]);
+    const [roomItem, setRoomItem] = useState([]);
     const [userId, setUserId] = useState("");
 
-    async function fetchRoomFeed() {
+    async function fetchRooms() {
         try {
             // Headers
             const myHeaders = new Headers()
@@ -23,7 +23,7 @@ function MainIndex(props) {
             const data = await response.json()
 
             // Set State
-            setRoomFeedItem(data.rooms.reverse())
+            setRoomItem(data.rooms.reverse())
             setUserId(data.userId)
 
         } catch (error) {
@@ -33,12 +33,12 @@ function MainIndex(props) {
 
     useEffect(() => {
         if (!props.token) return;
-        fetchRoomFeed();
+        fetchRooms();
     }, [props.token]);
 
     return (
         <div className="main-index">
-            <p>MAIN INDEX</p>
+            <h1>MAIN INDEX</h1>
             <Container>
                 <Row>
                     <Col>
@@ -46,10 +46,11 @@ function MainIndex(props) {
                     </Col>
                     <Col>
                         <RoomFeed 
-                        roomFeedItem={roomFeedItem}
+                        roomItem={roomItem}
                         token={props.token}
-                        fetchRoomFeed={fetchRoomFeed}
+                        fetchRooms={fetchRooms}
                         userId={userId}
+                        currentId={props.currentId}
                         />
                     </Col>
                 </Row>

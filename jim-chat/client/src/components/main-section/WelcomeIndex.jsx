@@ -12,11 +12,10 @@ function WelcomeIndex(props) {
     return (
         <>
             <div className="welcome-index">
-                <h1>WELCOME!</h1>
                 <Card>
                     <CardTitle>Welcome to JiM Chat!</CardTitle>
                     <CardText>Let's get you started</CardText>
-                    {!props.currentId ? (<JiMButton onClick={handleAuth} >Register/Log In</JiMButton>) : (<JiMButton onClick={handleGetStarted}>Create New Room</JiMButton>)}
+                    {!props.currentId ? (<JiMButton onClick={handleAuth}>Register/Log In</JiMButton>) : (<JiMButton onClick={handleGetStarted}>Create New Room</JiMButton>)}
                 </Card>
             </div>
         </>

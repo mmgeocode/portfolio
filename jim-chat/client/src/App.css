@@ -31,9 +31,12 @@ body {
   font-weight: bold;
 }
 
+/* --- HEADER --- */
 header {
   height: 100px;
-  background-color: var(--primary);
+  background-color: var(--secondary);
+  display: flex;
+  justify-content: center;
 }
 
 /* --- UI --- */
