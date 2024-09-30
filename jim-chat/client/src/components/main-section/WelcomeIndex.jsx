@@ -5,8 +5,9 @@ import JiMButton from '../../ui/JiMButton';
 
 function WelcomeIndex(props) {
     const navigate = useNavigate()
-
+    console.log(props.currentId)
     const handleAuth = () => { navigate("/auth") }
+    const handleNavigateToMain = () => { navigate("/feed/" + props.currentId)}
     const handleGetStarted = () => { navigate("/room/create")}
 
     return (

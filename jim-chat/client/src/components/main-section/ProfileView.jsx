@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { API_USER_VIEW_BY_ID } from '../../constants/endpoints';
-
+import ProfileCard from './ProfileCard'
 
 function ProfileView(props) {
     const params = useParams()
+    console.log(params)
     const [ProfileView, setProfileView] = useState({});
 
     async function fetchProfile() {
@@ -21,6 +22,7 @@ function ProfileView(props) {
 
             // Get Response
             const data = await response.json()
+            console.log(data)
 
             // Set State
             setProfileView(data.user)
@@ -38,6 +40,14 @@ function ProfileView(props) {
     return (
         <>
             <h1>Profile View</h1>
+            <div className="profile-view">
+                {ProfileView.map((user, index) => (
+                    <ProfileCard 
+                    key={index}
+                    user={user}
+                    />
+                ))}
+            </div>
         </>
     )
 }

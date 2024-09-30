@@ -5,6 +5,7 @@ import MessageFeed from './MessageFeed';
 
 function RoomView(props) {
     const params = useParams()
+    console.log(params)
     const [roomItem, setRoomItem] = useState([]);
 
     async function fetchRoomMsg() {
