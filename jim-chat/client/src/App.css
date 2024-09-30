@@ -31,14 +31,6 @@ body {
   font-weight: bold;
 }
 
-/* --- HEADER --- */
-header {
-  height: 100px;
-  background-color: var(--secondary);
-  display: flex;
-  justify-content: center;
-}
-
 /* --- UI --- */
 .jim-button {
   background-color: var(--backgroundColor);
@@ -54,9 +46,20 @@ header {
   opacity: 0.8;
 }
 
+/* --- HEADER --- */
+header {
+  height: 75px;
+  background-color: var(--secondary);
+  display: flex;
+  justify-content: center;
+}
+
 /* --- NAVBAR --- */
 .navbar {
   background-color: var(--backgroundColor);
+  display: flex;
+  justify-content: end;
+  align-items: end;
 }
 
 /* --- Authorization --- */
