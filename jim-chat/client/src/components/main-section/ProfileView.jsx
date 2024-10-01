@@ -4,9 +4,9 @@ import { API_USER_VIEW_BY_ID } from '../../constants/endpoints';
 import ProfileCard from './ProfileCard'
 
 function ProfileView(props) {
-    const params = useParams()
-    console.log(params)
-    const [ProfileView, setProfileView] = useState({});
+    // const params = useParams()
+    // console.log(params)
+    const [profileView, setProfileView] = useState({});
 
     async function fetchProfile() {
         try {
@@ -18,11 +18,11 @@ function ProfileView(props) {
             let requestOptions = { method: "GET", headers: myHeaders }
 
             // Send Request
-            const response = await fetch( API_USER_VIEW_BY_ID + "/" + params.id, requestOptions)
+            const response = await fetch( API_USER_VIEW_BY_ID + "/" + props.currentId, requestOptions)
 
             // Get Response
             const data = await response.json()
-            console.log(data)
+            // console.log(data)
 
             // Set State
             setProfileView(data.user)
@@ -41,12 +41,11 @@ function ProfileView(props) {
         <>
             <h1>Profile View</h1>
             <div className="profile-view">
-                {ProfileView.map((user, index) => (
-                    <ProfileCard 
-                    key={index}
-                    user={user}
-                    />
-                ))}
+                <ProfileCard
+                profileView={profileView}
+                token={props.token}
+                currentId={props.currentId}
+                />
             </div>
         </>
     )

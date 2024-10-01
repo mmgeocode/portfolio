@@ -5,9 +5,9 @@ import { API_USER_CREATE } from "../../constants/endpoints";
 import { useNavigate } from 'react-router-dom';
 
 function Register(props) {
-    const [userName, setUsername] = useState("username here");
-    const [email, setEmail] = useState("email here");
-    const [password, setPassword] = useState("password here");
+    const [userName, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const navigate = useNavigate();
     
     async function handleSubmit(evt) {
@@ -38,12 +38,12 @@ function Register(props) {
             // Get Response
             const data = await response.json()
 
-            // Update Token
+            // Update Token and CurrentId
             props.updateToken(data.token)
             props.updateCurrentId(data.user._id)
 
             // Navigate to Main
-            navigate("/")
+            navigate("/feed/" + data.user._id)
 
         } catch (error) {
             console.error(error)
@@ -52,6 +52,7 @@ function Register(props) {
 
     return (
         <>
+            <h1>REGISTER</h1>
             <div className="register-form">
                 <Form>
                     {/* USERNAME */}

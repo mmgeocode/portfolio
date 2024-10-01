@@ -8,13 +8,11 @@ import {
     NavItem,
     // NavLink,
  } from "reactstrap";
- import { useParams, NavLink } from "react-router-dom";
+ import { NavLink } from "react-router-dom";
 
  function NavigationBar(props) {
     const [collapsed, setCollapsed] = useState(true);
     const toggleNavbar = () => setCollapsed(!collapsed)
-    const params = useParams()
-    console.log(params)
 
     return (
         <div className="navbar">

@@ -34,8 +34,9 @@ function Login(props) {
             // Get Response
             const data = await response.json()
 
-            // Update Token
+            // Update Token and CurrentId
             props.updateToken(data.token)
+            props.updateCurrentId(data.user._id)
 
             // Navigate to Main
             navigate("/feed/" + data.user._id)
@@ -47,6 +48,7 @@ function Login(props) {
 
     return (
         <>
+            <h1>LOGIN</h1>
             <div className='login-form'>
                 <Form>
                     {/* EMAIL */}

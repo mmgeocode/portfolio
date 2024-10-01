@@ -7,7 +7,7 @@ const Auth = (props) => {
     const [showLogin, setShowLogin] = useState(false);
 
     function authToggle() {
-        return showLogin ? "Clock to log in" : "Click to create user"
+        return showLogin ? "Click to log in" : "Click to create user"
     }
 
     function handleToggle() {
@@ -20,10 +20,11 @@ const Auth = (props) => {
 
     return (
         <>
-            {showLogin ? <Login updateToken = {props.updateToken}/> : <Register updateToken = {props.updateToken}/>}
+            <h1>AUTH</h1>
+            {showLogin ? <Login updateToken = {props.updateToken} updateCurrentId = {props.updateCurrentId}/> : <Register updateToken = {props.updateToken} updateCurrentId = {props.updateCurrentId} />}
 
             <div className="login-register">
-                <JiMButton title='Login/Register' onClick={handleToggle}>
+                <JiMButton title={ showLogin ? "Switch to register" : "Switch to login"} onClick={handleToggle}>
                     {authToggle()}
                 </JiMButton>
             </div>
