@@ -11,7 +11,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.primary-background {
+/* .primary-background {
   background: var(--primary)
 }
 
@@ -29,12 +29,13 @@ body {
 
 .bold {
   font-weight: bold;
-}
+} */
 
 /* --- UI --- */
 .jim-button {
-  background-color: var(--backgroundColor);
+  background-color: var(--primary);
   padding: 10px;
+  width: 250px;
   color: rgb(3, 0, 0);
   border-radius: 10px;
   text-align: center;
@@ -43,6 +44,20 @@ body {
 }
 
 .jim-button:hover {
+  opacity: 0.8;
+}
+
+.room-join-button {
+  background-color: var(--primary);
+  padding: 0;
+  width: 75px;
+  height: 74px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.room-join-button:hover {
   opacity: 0.8;
 }
 
@@ -55,11 +70,13 @@ header {
 }
 
 /* --- NAVBAR --- */
-.navbar {
+nav.navbar {
   background-color: var(--backgroundColor);
-  display: flex;
-  justify-content: end;
-  align-items: end;
+  margin: 0;
+  padding: 0;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
 }
 
 /* --- Authorization --- */
@@ -80,3 +97,45 @@ header {
 }
 
 /* --- Main --- */
+.welcome-index {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1em;
+}
+
+.main-index {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  /* width: 1000px; */
+}
+
+.main-index-item {
+  width: 1000px;
+}
+
+/* --- ROOM --- */
+.room.card {
+  background-color: var(--backgroundColor);
+  display: flex;
+  flex-direction: row;
+  height: 75px;
+  padding: 0;
+  margin: 0;
+}
+
+.room.card-header {
+  padding: 0;
+  /* align-items: center; */
+  width: 100px;
+}
+
+.room.card-footer {
+  padding: 0;
+  margin: 0;
+  width: 75px;
+  height: 75px;
+}

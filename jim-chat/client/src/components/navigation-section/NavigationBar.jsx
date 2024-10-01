@@ -3,23 +3,27 @@ import {
     Collapse,
     Navbar,
     NavbarToggler,
-    // NavbarBrand,
+    NavbarBrand,
     Nav,
     NavItem,
     // NavLink,
+    UncontrolledDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem,
+    NavbarText,
  } from "reactstrap";
  import { NavLink } from "react-router-dom";
 
  function NavigationBar(props) {
-    const [collapsed, setCollapsed] = useState(true);
-    const toggleNavbar = () => setCollapsed(!collapsed)
+    // const [collapsed, setCollapsed] = useState(true);
+    // const toggleNavbar = () => setCollapsed(!collapsed)
+    const [isOpen, setIsOpen] = useState(false);
+    const toggle = () => setIsOpen(!isOpen)
 
     return (
-        <div className="navbar">
             <Navbar>
-                {/* <NavbarBrand href='/'>JiM-CHAT</NavbarBrand> */}
-                <NavbarToggler onClick={toggleNavbar} />
-                <Collapse isOpen={!collapsed} navbar>
+                <NavbarBrand href='/'>JiM-CHAT</NavbarBrand>
                     <Nav navbar>
                         <NavItem>
                             <NavLink to={'/feed/' + props.currentId}>View Message Rooms</NavLink>
@@ -33,9 +37,10 @@ import {
                             <NavLink onClick={props.clickLogout} to={'/'}>Log Out</NavLink>
                         </NavItem>
                     </Nav>
-                </Collapse>
+                {/* <NavbarToggler onClick={toggleNavbar} /> */}
+                {/* <Collapse isOpen={!collapsed} navbar> */}
+                {/* </Collapse> */}
             </Navbar>
-        </div>
     )
  }
 

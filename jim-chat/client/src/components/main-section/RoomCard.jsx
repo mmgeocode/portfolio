@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Card, CardBody, CardText, CardTitle } from 'reactstrap';
+import { Card, CardBody, CardFooter, CardHeader, CardText, CardTitle } from 'reactstrap';
 import { API_ROOM_JOIN, API_ROOM_PATCH } from '../../constants/endpoints';
 import { useNavigate } from 'react-router-dom';
 import JiMButton from '../../ui/JiMButton';
+import RoomJoinButton from '../../ui/RoomJoinButton';
 
 function RoomCard(props) {
     const { name, description, _id } = props.room;
@@ -75,13 +76,18 @@ function RoomCard(props) {
 
     return (
         <>
-            <h1>ROOM CARD</h1>
-            <Card>
-                <CardBody>
+            {/* <h1>ROOM CARD</h1> */}
+            <Card className='room'>
+                <CardHeader className='room'>
                     <CardTitle>{name}</CardTitle>
+                </CardHeader>
+                <CardBody className='room'>
                     <CardText>{description}</CardText>
                 </CardBody>
-                <JiMButton onClick={handleJoinRoom}>Join Room</JiMButton>
+                {/* <JiMButton className='room' title="JOIN" onClick={handleJoinRoom}>Join Room</JiMButton> */}
+                <CardFooter className='room'>
+                    <RoomJoinButton title='JOIN' onClick={handleJoinRoom}></RoomJoinButton>
+                </CardFooter>
             </Card>
         </>
     )

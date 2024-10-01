@@ -39,22 +39,15 @@ function MainIndex(props) {
     return (
         <div className="main-index">
             <h1>MAIN INDEX</h1>
-            <Container>
-                <Row>
-                    <Col>
-                        {/* <RoomCreate token={props.token} fetchRooms={fetchRooms}/> */}
-                    </Col>
-                    <Col>
-                        <RoomFeed 
-                        roomItem={roomItem}
-                        token={props.token}
-                        fetchRooms={fetchRooms}
-                        userId={userId}
-                        currentId={props.currentId}
-                        />
-                    </Col>
-                </Row>
-            </Container>
+            <div className="main-index-item">
+                <RoomFeed 
+                roomItem={roomItem}
+                token={props.token}
+                fetchRooms={fetchRooms}
+                userId={userId}
+                currentId={props.currentId}
+                />
+            </div>
         </div>
     )
 }
