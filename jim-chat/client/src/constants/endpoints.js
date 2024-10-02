@@ -10,6 +10,8 @@ export const API_CREATE_ROOM = "http://localhost:4000/room/create"
 
 export const API_ROOM_JOIN = "http://localhost:4000/room"
 
+export const API_ROOM_GET = "http://localhost:4000/room"
+
 export const API_ROOM_PATCH = "http://localhost:4000/update"
 
 export const API_MESSAGE_VIEW_BY_ROOM = "http://localhost:4000/message/room"

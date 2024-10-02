@@ -50,8 +50,8 @@ body {
 .room-join-button {
   background-color: var(--primary);
   padding: 0;
-  width: 75px;
-  height: 74px;
+  width: 74px;
+  height: 73px;
   border-radius: 5px;
   cursor: pointer;
   text-align: center;

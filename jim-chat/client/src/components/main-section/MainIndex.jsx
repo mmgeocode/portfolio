@@ -38,7 +38,7 @@ function MainIndex(props) {
 
     return (
         <div className="main-index">
-            <h1>MAIN INDEX</h1>
+            <h1>MESSAGE ROOMS</h1>
             <div className="main-index-item">
                 <RoomFeed 
                 roomItem={roomItem}

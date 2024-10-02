@@ -1,12 +1,47 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from "react-router-dom"
-import { API_MESSAGE_VIEW_BY_ROOM } from '../../constants/endpoints';
+import { useNavigate, useParams } from "react-router-dom"
+import { API_MESSAGE_VIEW_BY_ROOM, API_ROOM_GET } from '../../constants/endpoints';
 import MessageFeed from './MessageFeed';
+import { Label } from 'reactstrap';
+import JiMButton from '../../ui/JiMButton';
 
 function RoomView(props) {
     const params = useParams()
-    console.log(params)
+    // console.log(params)
+    const [roomData, setRoomData] = useState([]);
     const [roomItem, setRoomItem] = useState([]);
+    const navigate = useNavigate()
+
+    function returnHome() {
+        navigate("/feed/" + props.currentId)
+    }
+
+    async function fetchRoomName() {
+        try {
+            // Headers
+            const myHeaders = new Headers()
+            myHeaders.append("Authorization", props.token)
+
+            // Request Options
+            let requestOptions = {
+                method: "GET",
+                headers: myHeaders,
+            }
+
+            // Send Request
+            const response = await fetch(API_ROOM_GET + "/" + params.id, requestOptions)
+
+            // Get Response
+            const data = await response.json()
+            console.log(data)
+
+            // Set State
+            setRoomData(data.room)
+
+        } catch (error) {
+            
+        }
+    }
 
     async function fetchRoomMsg() {
         try {
@@ -25,11 +60,11 @@ function RoomView(props) {
 
             // Get Response
             const data = await response.json()
-            console.log(data)
+            // console.log(data)
 
             // Set State
             setRoomItem(data.room_messages)
-            console.log(data.room_messages)
+            // console.log(data.room_messages)
 
         } catch (error) {
             console.error(error)
@@ -39,11 +74,13 @@ function RoomView(props) {
     useEffect(() => {
         if (!props.token) return;
         fetchRoomMsg()
+        fetchRoomName()
     }, [props.token]);
 
     return (
         <>
-        <h1>ROOM VIEW</h1>
+            <h1>ROOM: {roomData.name} </h1>
+            <JiMButton onClick={returnHome} title='Return to Rooms' />
             <MessageFeed 
             roomItem={roomItem} 
             token={props.token} 
