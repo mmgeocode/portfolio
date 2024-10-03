@@ -1,15 +1,114 @@
-import { Card, CardBody, CardTitle } from "reactstrap"
+import React, { useState, useEffect } from 'react';
+import { Card, CardBody, CardFooter, CardHeader, CardTitle, Input } from "reactstrap"
+import { API_MESSAGE_PATCH, API_USER_VIEW_BY_ID } from "../../constants/endpoints"
+import JiMButton from '../../ui/JiMButton';
 
 
 function MessageCard(props) {
     const { room_id, owner_id, _id, msg } = props.room_message
+    const [editModeEnabled, setEditModeEnabled] = useState(false);
+    const [userName, setUserName] = useState([]);
+    const [msgInput, setMsgInput] = useState(msg);
+
+    function handleToggleEdit() {
+        setEditModeEnabled(!editModeEnabled)
+    }
+
+    async function fetchUserName() {
+        try {
+            // Headers
+            const myHeaders = new Headers()
+            myHeaders.append("Authorization", props.token)
+
+            // Request Options
+            let requestOptions = {
+                method: "GET",
+                headers: myHeaders,
+            }
+
+            // Send Request
+            const response = await fetch(API_USER_VIEW_BY_ID + "/" + owner_id, requestOptions)
+
+            // GET Response
+            const data = await response.json()
+            // console.log(data)
+
+            // Set State
+            setUserName(data.user.userName)
+
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    async function handleEdit() {
+        try {
+            // Headers
+            let myHeaders = new Headers()
+            myHeaders.append("Authorization", props.token)
+            myHeaders.append("Content-Type", "application/json")
+
+            // Body
+            const body = {
+                msg: msgInput,
+            }
+
+            // Request Options
+            const requestOptions = {
+                method: "PATCH",
+                headers: myHeaders,
+                body: JSON.stringify(body)
+            }
+
+            // Send Request
+            const response = await fetch(API_MESSAGE_PATCH + "/" + _id, requestOptions)
+
+            // PATCH Response
+            const data = await response.json()
+            console.log(data)
+
+            // Refresh Message Feed
+            props.fetchRoomMsg()
+
+            // Change Edit Mode
+            setEditModeEnabled(false)
+
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    useEffect(() => {
+        if (!props.token) return;
+        fetchUserName()
+    }, [props.token]);
 
     return (
         <>
-        <h1>MESSAGE CARD</h1>
             <Card>
-                <CardTitle>MESSAGE: {msg}</CardTitle>
-                <CardBody>Room ID: {room_id}, Owner ID: {owner_id}, Message ID: {_id}</CardBody>
+                <CardHeader>{userName}</CardHeader>
+                <CardBody>
+                    {/* {editModeEnabled ? (
+                        <Input 
+                        type='text'
+                        id='msg'
+                        value={msgInput}
+                        onChange={(e) => setMsgInput(e.target.value)}
+                        />
+                    ) : (
+                        {msg}
+                    )} */}
+                    {msg}
+                </CardBody>
+                <CardFooter>
+                    {editModeEnabled ? (
+                        <JiMButton onClick={handleEdit} title='Confirm Edit' />
+                        // <JiMButton onClick={handleToggleEdit} title='Cancel' />
+                        // <h1>EDIT MODE</h1>
+                    ) : (
+                        <JiMButton onClick={handleToggleEdit} title='Edit' />
+                    )}
+                </CardFooter>
             </Card>
         </>
     )

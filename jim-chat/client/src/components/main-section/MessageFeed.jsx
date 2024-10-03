@@ -3,11 +3,6 @@ import MessageCard from "./MessageCard"
 function MessageFeed(props) {
     return (
         <>
-        <h1>MESSAGE FEED</h1>
-            {/* {props.roomItem.map((message, index) => (
-                <MessageCard key={index} message={message} token={props.token} />
-            ))} */}
-
             {props.roomItem.map((room_message, index) => (
                 <MessageCard 
                 key={index}

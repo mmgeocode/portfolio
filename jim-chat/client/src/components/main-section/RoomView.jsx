@@ -39,7 +39,7 @@ function RoomView(props) {
             setRoomData(data.room)
 
         } catch (error) {
-            
+            console.error(error)
         }
     }
 
