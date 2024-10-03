@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Card, CardBody, CardFooter, CardHeader, CardTitle, Input } from "reactstrap"
-import { API_MESSAGE_PATCH, API_USER_VIEW_BY_ID } from "../../constants/endpoints"
+import { Card, CardBody, CardFooter, CardHeader, CardText, CardTitle, Input, Label } from "reactstrap"
+import { API_MESSAGE_DELETE, API_MESSAGE_PATCH, API_USER_VIEW_BY_ID } from "../../constants/endpoints"
 import JiMButton from '../../ui/JiMButton';
 
 
@@ -42,7 +42,6 @@ function MessageCard(props) {
     }
 
     async function handleEdit() {
-        try {
             // Headers
             let myHeaders = new Headers()
             myHeaders.append("Authorization", props.token)
@@ -73,6 +72,31 @@ function MessageCard(props) {
             // Change Edit Mode
             setEditModeEnabled(false)
 
+    }
+
+    async function handleDelete() {
+        // console.log("Delete clicked")
+        try {
+            // Headers
+            const myHeaders = new Headers()
+            myHeaders.append("Authorization", props.token)
+
+            // Request Options
+            let requestOptions = {
+                method: "DELETE",
+                headers: myHeaders,
+            }
+
+            // Send Request
+            const response = await fetch(API_MESSAGE_DELETE + "/" + _id, requestOptions)
+
+            // DELETE Response
+            const data = await response.json()
+            console.log(data)
+
+            // Refresh Message Feed
+            props.fetchRoomMsg()
+
         } catch (error) {
             console.error(error)
         }
@@ -88,25 +112,29 @@ function MessageCard(props) {
             <Card>
                 <CardHeader>{userName}</CardHeader>
                 <CardBody>
-                    {/* {editModeEnabled ? (
+                    {editModeEnabled ? ( <>
+                        <Label for='msg'>Message:</Label>
                         <Input 
                         type='text'
                         id='msg'
                         value={msgInput}
                         onChange={(e) => setMsgInput(e.target.value)}
                         />
-                    ) : (
-                        {msg}
-                    )} */}
-                    {msg}
+                    </> ) : (
+                        <CardText>{msg}</CardText>
+                    )}
                 </CardBody>
                 <CardFooter>
                     {editModeEnabled ? (
                         <JiMButton onClick={handleEdit} title='Confirm Edit' />
-                        // <JiMButton onClick={handleToggleEdit} title='Cancel' />
-                        // <h1>EDIT MODE</h1>
                     ) : (
                         <JiMButton onClick={handleToggleEdit} title='Edit' />
+                    )}
+                    {editModeEnabled && (
+                        <JiMButton onClick={handleToggleEdit} title='Cancel' />
+                    )}
+                    {editModeEnabled && (
+                        <JiMButton onClick={handleDelete} title='Delete Message' />
                     )}
                 </CardFooter>
             </Card>

@@ -19,3 +19,5 @@ export const API_MESSAGE_VIEW_BY_ROOM = "http://localhost:4000/message/room"
 export const API_MESSAGE_CREATE = "http://localhost:4000/message/create"
 
 export const API_MESSAGE_PATCH = "http://localhost:4000/message/update"
+
+export const API_MESSAGE_DELETE = "http://localhost:4000/message/delete"
