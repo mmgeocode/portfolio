@@ -14,7 +14,6 @@ function RoomFeed(props) {
     const [description, setDescription] = useState("");
 
     async function handleCreateRoom() {
-
         try {
             // Headers
             let myHeaders = new Headers()
@@ -37,11 +36,13 @@ function RoomFeed(props) {
             // Send Request
             const response = await fetch(API_CREATE_ROOM, requestOptions)
 
-            // Get Response
+            // POST Response
             const data = await response.json()
 
             // Refresh Room Feed
-            navigate("/message/room/" + data.room._id)
+            // navigate("/message/room/" + data.room._id)
+            props.fetchRooms()
+            toggle()
 
         } catch (error) {
             console.error(error)
@@ -93,8 +94,9 @@ function RoomFeed(props) {
                 key={index}
                 room={room}
                 token={props.token}
+                currentId={props.currentId}
                 fetchRooms={props.fetchRooms}
-                userId={props.userId}
+                // userId={props.userId}
                 />
             ))}
         </>

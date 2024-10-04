@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import { Card, CardBody, CardFooter, CardHeader, CardText, CardTitle } from 'reactstrap';
-import { API_ROOM_JOIN, API_ROOM_PATCH } from '../../constants/endpoints';
+import { Card, CardBody, CardFooter, CardHeader, CardText, CardTitle, Input, Label } from 'reactstrap';
+import { API_ROOM_DELETE_BY_ID, API_ROOM_JOIN, API_ROOM_PATCH } from '../../constants/endpoints';
 import { useNavigate } from 'react-router-dom';
-import JiMButton from '../../ui/JiMButton';
 import RoomJoinButton from '../../ui/RoomJoinButton';
+import RoomEditButton from '../../ui/RoomEditButton';
+import RoomDeleteButton from '../../ui/RoomDeleteButton';
 
 function RoomCard(props) {
     const { name, description, _id } = props.room;
+    // console.log(props.currentId)
+    // console.log(props.room.owner_id)
     const navigate = useNavigate();
     const [nameInput, setNameInput] = useState(name);
     const [descriptionInput, setDescriptionInput] = useState(description);
@@ -38,14 +41,43 @@ function RoomCard(props) {
         // Send Request
         const response = await fetch(API_ROOM_PATCH + "/" + _id, requestOptions)
 
-        // Get Response
+        // PATCH Response
         const data = await response.json()
+        console.log(data)
 
         // Refresh Room Feed
-        props.fetchRoomFeed()
+        props.fetchRooms()
 
         // Change Edit Mode to False
         setEditModeEnabled(false)
+    }
+
+    async function handleDelete() {
+        try {
+            // Headers
+            const myHeaders = new Headers()
+            myHeaders.append("Authorization", props.token)
+
+            // Request Options
+            let requestOptions = {
+                method: "DELETE",
+                headers: myHeaders,
+            }
+
+            // Send Request
+            const response = await fetch(API_ROOM_DELETE_BY_ID + "/" + _id, requestOptions)
+
+            // DELETE Response
+            const data = await response.json()
+            console.log(data)
+
+            // Refresh Room 
+            handleToggleEdit()
+            props.fetchRooms()
+
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     async function handleJoinRoom() {
@@ -76,17 +108,45 @@ function RoomCard(props) {
 
     return (
         <>
-            {/* <h1>ROOM CARD</h1> */}
             <Card className='room'>
                 <CardHeader className='room'>
-                    <CardTitle>{name}</CardTitle>
+                    {editModeEnabled ? ( <>
+                        <Label for='name'>Room Name:</Label>
+                        <Input 
+                        type='text'
+                        id='name'
+                        value={nameInput}
+                        onChange={(e) => setNameInput(e.target.value)}
+                        />
+                    </> ) : (
+                        <CardTitle>{name}</CardTitle>
+                    )}
                 </CardHeader>
                 <CardBody className='room'>
-                    <CardText>{description}</CardText>
+                    {editModeEnabled ? ( <>
+                        <Label for='description'>Room Description:</Label>
+                        <Input 
+                        type='text'
+                        id='description'
+                        value={descriptionInput}
+                        onChange={(e) => setDescriptionInput(e.target.value)}
+                        />
+                    </> ) : (
+                        <CardText>{description}</CardText>
+                    )}
                 </CardBody>
-                {/* <JiMButton className='room' title="JOIN" onClick={handleJoinRoom}>Join Room</JiMButton> */}
                 <CardFooter className='room'>
-                    <RoomJoinButton title='JOIN' onClick={handleJoinRoom}></RoomJoinButton>
+                    {editModeEnabled ? ( <>
+                        <RoomDeleteButton onClick={handleDelete} title='DELETE' />
+                    </> ) : (
+                        <RoomJoinButton title='JOIN' onClick={handleJoinRoom}></RoomJoinButton>
+                    )}
+                    {editModeEnabled ? ( <>
+                        <RoomEditButton background-color='var(--confirm)' onClick={handleEdit} title='EDIT' />
+                    </>) : (
+                        props.currentId === props.room.owner_id && <RoomEditButton onClick={handleToggleEdit} title='EDIT' />
+
+                    )}
                 </CardFooter>
             </Card>
         </>

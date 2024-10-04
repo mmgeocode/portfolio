@@ -4,6 +4,8 @@
   --secondary: #F6BA6F;
   --backgroundColor: #ADE4DB;
   --neutral: #FFEBEB;
+  --danger: #FF0000;
+  --confirm: #006400;
 }
 
 body {
@@ -50,8 +52,8 @@ body {
 .room-join-button {
   background-color: var(--primary);
   padding: 0;
-  width: 74px;
-  height: 73px;
+  width: 99px;
+  height: 37px;
   border-radius: 5px;
   cursor: pointer;
   text-align: center;
@@ -59,6 +61,30 @@ body {
 
 .room-join-button:hover {
   opacity: 0.8;
+}
+
+.room-edit-button {
+  background-color: var(--secondary);
+  padding: 0;
+  width: 99px;
+  height: 37px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.room-edit-button:hover {
+  opacity: 0.8;
+}
+
+.room-delete-button {
+  background-color: var(--danger);
+  padding: 0;
+  width: 99px;
+  height: 37px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
 }
 
 /* --- HEADER --- */
@@ -122,6 +148,9 @@ nav.navbar {
   background-color: var(--backgroundColor);
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
   height: 75px;
   padding: 0;
   margin: 0;
@@ -134,8 +163,9 @@ nav.navbar {
 }
 
 .room.card-footer {
+  align-self: center;
   padding: 0;
   margin: 0;
-  width: 75px;
+  width: 100px;
   height: 75px;
 }

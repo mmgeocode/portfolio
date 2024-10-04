@@ -75,7 +75,6 @@ function MessageCard(props) {
     }
 
     async function handleDelete() {
-        // console.log("Delete clicked")
         try {
             // Headers
             const myHeaders = new Headers()

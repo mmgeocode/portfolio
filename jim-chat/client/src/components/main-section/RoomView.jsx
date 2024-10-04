@@ -4,6 +4,7 @@ import { API_MESSAGE_VIEW_BY_ROOM, API_ROOM_GET } from '../../constants/endpoint
 import MessageFeed from './MessageFeed';
 import { Label } from 'reactstrap';
 import JiMButton from '../../ui/JiMButton';
+import MessageCreate from './MessageCreate';
 
 function RoomView(props) {
     const params = useParams()
@@ -81,6 +82,12 @@ function RoomView(props) {
         <>
             <h1>ROOM: {roomData.name} </h1>
             <JiMButton onClick={returnHome} title='Return to Rooms' />
+            <MessageCreate
+            token={props.token}
+            currentId={props.currentId}
+            fetchRoomMsg={fetchRoomMsg}
+            roomData={roomData}
+            />
             <MessageFeed 
             roomItem={roomItem} 
             token={props.token} 
