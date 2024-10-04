@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { API_VIEW_ALL_ROOMS } from '../../constants/endpoints';
 import { Col, Container, Row } from 'reactstrap';
 import RoomFeed from './RoomFeed';
+import ReturnToAuth from '../navigation-section/ReturnToAuth';
 
 function MainIndex(props) {
     const [roomItem, setRoomItem] = useState([]);
@@ -35,6 +36,8 @@ function MainIndex(props) {
         if (!props.token) return;
         fetchRooms();
     }, [props.token]);
+
+    if (!props.token) return <ReturnToAuth />
 
     return (
         <div className="main-index">

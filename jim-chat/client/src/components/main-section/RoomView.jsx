@@ -5,6 +5,7 @@ import MessageFeed from './MessageFeed';
 import { Label } from 'reactstrap';
 import JiMButton from '../../ui/JiMButton';
 import MessageCreate from './MessageCreate';
+import ReturnToAuth from '../navigation-section/ReturnToAuth';
 
 function RoomView(props) {
     const params = useParams()
@@ -77,6 +78,8 @@ function RoomView(props) {
         fetchRoomMsg()
         fetchRoomName()
     }, [props.token]);
+
+    if (!props.token) return <ReturnToAuth />
 
     return (
         <>

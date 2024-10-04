@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { API_USER_VIEW_BY_ID } from '../../constants/endpoints';
 import ProfileCard from './ProfileCard'
+import ReturnToAuth from '../navigation-section/ReturnToAuth';
 
 function ProfileView(props) {
     // const params = useParams()
@@ -36,6 +37,8 @@ function ProfileView(props) {
         if (!props.token) return;
         fetchProfile()
     }, [props.token]);
+
+    if (!props.token) return <ReturnToAuth />
 
     return (
         <>
