@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { API_VIEW_ALL_ROOMS } from '../../constants/endpoints';
-import { Col, Container, Row } from 'reactstrap';
 import RoomFeed from './RoomFeed';
 import ReturnToAuth from '../navigation-section/ReturnToAuth';
 

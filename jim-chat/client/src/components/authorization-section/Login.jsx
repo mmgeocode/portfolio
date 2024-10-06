@@ -48,8 +48,8 @@ function Login(props) {
 
     return (
         <>
-            <h1>LOGIN</h1>
             <div className='login-form'>
+                <h2>LOGIN to JiM-CHAT</h2>
                 <Form>
                     {/* EMAIL */}
                     <FormGroup>

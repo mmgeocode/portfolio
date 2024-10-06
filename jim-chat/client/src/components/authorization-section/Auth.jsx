@@ -20,7 +20,6 @@ const Auth = (props) => {
 
     return (
         <>
-            <h1>AUTH</h1>
             {showLogin ? <Login updateToken = {props.updateToken} updateCurrentId = {props.updateCurrentId}/> : <Register updateToken = {props.updateToken} updateCurrentId = {props.updateCurrentId} />}
 
             <div className="login-register">

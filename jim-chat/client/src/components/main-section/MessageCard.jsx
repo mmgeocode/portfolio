@@ -108,6 +108,7 @@ function MessageCard(props) {
 
     return (
         <>
+        <div className="message-card">
             <Card>
                 <CardHeader>{userName}</CardHeader>
                 <CardBody>
@@ -137,6 +138,7 @@ function MessageCard(props) {
                     )}
                 </CardFooter>
             </Card>
+        </div>
         </>
     )
 }

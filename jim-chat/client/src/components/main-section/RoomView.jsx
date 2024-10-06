@@ -83,7 +83,8 @@ function RoomView(props) {
 
     return (
         <>
-            <h1>ROOM: {roomData.name} </h1>
+        <div className="room-view">
+            <h1>Message Room: {roomData.name} </h1>
             <JiMButton onClick={returnHome} title='Return to Rooms' />
             <MessageCreate
             token={props.token}
@@ -97,6 +98,7 @@ function RoomView(props) {
             fetchRoomMsg={fetchRoomMsg} 
             currentId={props.currentId}
             />
+        </div>
         </>
     )
 }

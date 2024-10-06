@@ -3,12 +3,10 @@ import { Form, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHead
 import JiMButton from "../../ui/JiMButton";
 import RoomCard from "./RoomCard";
 import { API_CREATE_ROOM } from '../../constants/endpoints';
-import { useNavigate } from 'react-router-dom';
 
 function RoomFeed(props) {
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal)
-    const navigate = useNavigate()
 
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
@@ -38,9 +36,9 @@ function RoomFeed(props) {
 
             // POST Response
             const data = await response.json()
+            console.log(data)
 
             // Refresh Room Feed
-            // navigate("/message/room/" + data.room._id)
             props.fetchRooms()
             toggle()
 
@@ -53,7 +51,6 @@ function RoomFeed(props) {
         <>
             <div className="room-create-button">
                 <JiMButton onClick={toggle} title="Create Room" />
-                {/* <Button onClick={toggle}>Create Room</Button> */}
                 <Modal isOpen={modal} toggle={toggle}>
                     <ModalHeader toggle={toggle}>CREATE MESSAGE ROOM</ModalHeader>
                     <ModalBody>
@@ -96,7 +93,6 @@ function RoomFeed(props) {
                 token={props.token}
                 currentId={props.currentId}
                 fetchRooms={props.fetchRooms}
-                // userId={props.userId}
                 />
             ))}
         </>

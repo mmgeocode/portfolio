@@ -8,8 +8,6 @@ import RoomDeleteButton from '../../ui/RoomDeleteButton';
 
 function RoomCard(props) {
     const { name, description, _id } = props.room;
-    // console.log(props.currentId)
-    // console.log(props.room.owner_id)
     const navigate = useNavigate();
     const [nameInput, setNameInput] = useState(name);
     const [descriptionInput, setDescriptionInput] = useState(description);
@@ -97,6 +95,7 @@ function RoomCard(props) {
 
             // Get Response
             const data = await response.json()
+            console.log(data)
 
             // Navigate to RoomView
             navigate('/message/room/' + _id)

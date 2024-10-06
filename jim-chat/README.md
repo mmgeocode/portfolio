@@ -19,3 +19,7 @@
 - `npm i reactstrap`
 - `npm i bootstrap`
 - `npm i react-router-dom`
+
+### Future Work
+- More interactive features with message cards
+- Additional styling

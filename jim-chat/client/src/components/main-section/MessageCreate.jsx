@@ -5,7 +5,6 @@ import JiMButton from '../../ui/JiMButton';
 
 function MessageCreate(props) {
     const [msgInput, setMsgInput] = useState("");
-    // console.log(props.roomData)
     const { _id } = props.roomData
 
     async function handleMsgCreate() {
@@ -46,8 +45,8 @@ function MessageCreate(props) {
     }
 
   return (
-    <Card>
-        <CardHeader>Message Create</CardHeader>
+    <Card className='message-create'>
+        <CardHeader>Create Message</CardHeader>
         <CardBody>
             <Form className='message-create'>
                 <Input 
