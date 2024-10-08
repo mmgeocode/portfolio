@@ -1,38 +1,42 @@
-.App {
+/* --- ROOT --- */
+:root {
+  --primary: #ECE5C7;
+  --secondary: #CDC2AE;
+  --tertiary: #C2DEDC;
+  --quartenary: #116A7B;
+}
+
+/* --- UI --- */
+.rc-button {
+  background-color: var(--quartenary);
+  padding: 10px;
+  width: 200px;
+  border-radius: 10px;
   text-align: center;
+  cursor: pointer;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.rc-button:hover {
+  opacity: 0.8;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* --- HEADER --- */
+.header {
+  background-color: var(--quartenary);
+  width: 100%;
+  height: 25px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* --- NAVIGATION --- */
+.navigation {
+  background-color: var(--tertiary);
+  width: 100%;
+  height: 25px;
 }
 
-.App-link {
-  color: #61dafb;
+/* --- AUTH --- */
+.authorization {
+  background-color: var(--primary);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+/* --- MAIN --- */
