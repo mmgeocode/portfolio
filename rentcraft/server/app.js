@@ -6,6 +6,9 @@ const mongoose = require('mongoose');
 
 // Controllers
 const userController = require('./controllers/user.controller')
+const unitController = require('./controllers/unit.controller')
+const tenantsController = require('./controllers/tenants.controller')
+const paymentsController = require('./controllers/payments.controller')
 
 // .env
 const PORT = process.env.PORT;
@@ -20,6 +23,9 @@ db.once('open', () => { console.log('connect to the DB', DBName) })
 app.use(cors());
 app.use(express.json());
 app.use('/user', userController)
+app.use('/unit', unitController)
+app.use('/tenants', tenantsController)
+app.use('/payments', paymentsController)
 
 app.listen(PORT, () => {
     console.log(`server is running on port: ${PORT}`)

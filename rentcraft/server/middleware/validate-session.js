@@ -20,7 +20,7 @@ const validateSession = async (req, res, next) => {
         return next()
 
     } catch (error) {
-        res.status.json({ message: error.message })
+        res.status(500).json({ message: error.message })
     }
 }
 
