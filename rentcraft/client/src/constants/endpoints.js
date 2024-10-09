@@ -7,3 +7,5 @@ export const API_USER_VIEW_BY_ID = "http://localhost:4000/user";
 export const API_UNIT_VIEW_ALL = "http://localhost:4000/unit/view-all"
 
 export const API_UNIT_VIEW_BY_ID = "http://localhost:4000/unit/"
+
+export const API_UNIT_PATCH = "http://localhost:4000/unit/update/"

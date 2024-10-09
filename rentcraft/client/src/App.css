@@ -40,6 +40,10 @@
   height: 25px;
 }
 
+.navbar {
+  background-color: var(--quartenary);
+}
+
 /* --- AUTH --- */
 .authorization {
   background-color: var(--primary);
