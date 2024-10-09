@@ -6,6 +6,8 @@ import WelcomeIndex from './components/main-section/WelcomeIndex';
 import MainHeader from './components/header-section/MainHeader';
 import NavBar from './components/navigation-section/NavBar';
 import Auth from './components/authorization-section/Auth';
+import MainIndex from './components/main-section/MainIndex';
+import UnitIndex from './components/unit-section/UnitIndex';
 
 function App() {
   const [token, setToken] = useState("");
@@ -52,6 +54,16 @@ function App() {
         <Route 
         path='/auth'
         element={<Auth updateToken={updateToken} updateCurrentId={updateCurrentId} />}
+        />
+
+        <Route
+        path='/feed/:id'
+        element={<MainIndex token={token} currentId={currentId} />} 
+        />
+
+        <Route
+        path='/unit/:id'
+        element={<UnitIndex token={token} currentId={currentId} />}
         />
       </Routes>
     </div>

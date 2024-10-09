@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Form, FormGroup, Input, Label } from 'reactstrap';
 import RCButton from '../../ui/RCButton';
 import { API_USER_CREATE } from '../../constants/endpoints';
+import { useNavigate } from 'react-router-dom';
 
 
 function Register(props) {
@@ -9,6 +10,7 @@ function Register(props) {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate()
 
   async function handleSubmit() {
     try {
@@ -41,7 +43,8 @@ function Register(props) {
       props.updateToken(data.token)
       props.updateCurrentId(data.user._id)
 
-      // Navigate
+      // Navigate to Main
+      navigate('/feed/' + data.user._id)
 
     } catch (error) {
       

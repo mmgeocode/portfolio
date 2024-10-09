@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
 import RCButton from '../../ui/RCButton';
 import { API_USER_LOGIN } from '../../constants/endpoints';
+import { useNavigate } from 'react-router-dom';
 
 function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate()
 
   async function handleSubmit() {
     try {
@@ -34,6 +36,7 @@ function Login(props) {
       props.updateCurrentId(data.user._id)
 
       // Navigate to Main
+      navigate('/feed/' + data.user._id)
 
     } catch (error) {
       console.error(error)

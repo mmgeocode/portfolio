@@ -20,6 +20,12 @@
   opacity: 0.8;
 }
 
+/* --- CONTAINER --- */
+.app-container {
+  display: flex;
+  flex-direction: column;
+}
+
 /* --- HEADER --- */
 .header {
   background-color: var(--quartenary);
