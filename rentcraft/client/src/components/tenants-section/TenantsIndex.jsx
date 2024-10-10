@@ -1,13 +1,12 @@
+import { API_TENANTS_VIEW_ALL } from "../../constants/endpoints";
+import TenantsCreate from "./TenantsCreate";
+import TenantsFeed from "./TenantsFeed";
 import React, { useState, useEffect } from 'react';
-import { API_UNIT_VIEW_ALL } from '../../constants/endpoints';
-import UnitFeed from '../unit-section/UnitFeed';
-import UnitCreate from '../unit-section/UnitCreate';
 
-function MainIndex(props) {
-    const [unitFeedItems, setUnitFeedItems] = useState([]);
-    const [userId, setUserId] = useState("");
+function TenantsIndex(props) {
+    const [tenantsData, setTenantsData] = useState([]);
 
-    async function fetchUnitFeed() {
+    async function fetchTenants() {
         try {
             // Headers
             const myHeaders = new Headers()
@@ -16,18 +15,18 @@ function MainIndex(props) {
             // Request Options
             let requestOptions = {
                 method: "GET",
-                headers: myHeaders,
+                headers: myHeaders
             }
 
             // Send Request
-            const response = await fetch(API_UNIT_VIEW_ALL, requestOptions)
+            const response = await fetch(API_TENANTS_VIEW_ALL, requestOptions)
 
             // GET Response
             const data = await response.json()
-            console.log(data)
+            // console.log(data)
 
             // Set State
-            setUnitFeedItems(data.units)
+            setTenantsData(data.user_tenants)
 
         } catch (error) {
             console.error(error)
@@ -36,24 +35,25 @@ function MainIndex(props) {
 
     useEffect(() => {
         if (!props.token) return;
-        fetchUnitFeed()
+        fetchTenants();
     }, [props.token]);
 
   return (
     <>
-        <div className="main-index">
-            <h2>MAIN INDEX</h2>
-            <UnitCreate
+        <div className="tenants-index">
+            <h2>Tenants Index</h2>
+            <TenantsCreate 
+            fetchTenants={fetchTenants}
+            tenantsData={tenantsData}
             token={props.token}
             currentId={props.currentId}
-            fetchUnitFeed={fetchUnitFeed}
             />
 
-            <UnitFeed 
+            <TenantsFeed 
+            fetchTenants={fetchTenants}
+            tenantsData={tenantsData}
             token={props.token}
             currentId={props.currentId}
-            fetchUnitFeed={fetchUnitFeed}
-            unitFeedItems={unitFeedItems}
             />
         </div>
     </>
@@ -61,4 +61,4 @@ function MainIndex(props) {
 }
 
 
-export default MainIndex;
+export default TenantsIndex;

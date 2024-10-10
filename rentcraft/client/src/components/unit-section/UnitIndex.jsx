@@ -97,6 +97,7 @@ function UnitIndex(props) {
     <>
         <div className="unit-index">
             <h2>Unit Index</h2>
+
             {editModeEnabled ? ( <>
                 <Label for='address'>Address</Label>
                 <Input 

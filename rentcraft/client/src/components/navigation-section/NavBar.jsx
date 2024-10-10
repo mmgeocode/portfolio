@@ -11,11 +11,11 @@ function NavBar(props) {
 
               <NavLink to={"/feed/" + props.currentId} style={{textDecoration: "none", color: "var(--primary)"}}>Units</NavLink>
 
-              <NavLink to={"/"} style={{textDecoration: "none", color: "var(--primary)"}}>Tenants</NavLink>
+              <NavLink to={"/tenants/view-all"} style={{textDecoration: "none", color: "var(--primary)"}}>Tenants</NavLink>
 
-              <NavLink to={"/"} style={{textDecoration: "none", color: "var(--primary)"}}>Payments</NavLink>
+              <NavLink to={"/payments/view-all"} style={{textDecoration: "none", color: "var(--primary)"}}>Payments</NavLink>
 
-              <NavLink to={"/"} style={{textDecoration: "none", color: "var(--primary)"}}>Account</NavLink>
+              <NavLink to={"/user/" + props.currentId} style={{textDecoration: "none", color: "var(--primary)"}}>Account</NavLink>
 
               <NavLink to={"/"} onClick={props.clickLogout} style={{textDecoration: "none", color: "var(--primary)"}}>Log Out</NavLink>
             </Navbar>

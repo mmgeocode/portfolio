@@ -8,6 +8,9 @@ import NavBar from './components/navigation-section/NavBar';
 import Auth from './components/authorization-section/Auth';
 import MainIndex from './components/main-section/MainIndex';
 import UnitIndex from './components/unit-section/UnitIndex';
+import TenantsIndex from './components/tenants-section/TenantsIndex';
+import ProfileView from './components/main-section/ProfileView';
+import PaymentsIndex from './components/payments-section/PaymentsIndex';
 
 function App() {
   const [token, setToken] = useState("");
@@ -64,6 +67,21 @@ function App() {
         <Route
         path='/unit/:id'
         element={<UnitIndex token={token} currentId={currentId} />}
+        />
+
+        <Route 
+        path='/tenants/view-all'
+        element={<TenantsIndex token={token} currentId={currentId} />}
+        />
+
+        <Route 
+        path='/payments/view-all'
+        element={<PaymentsIndex token={token} currentId={currentId} />}
+        />
+
+        <Route 
+        path='/user/:id'
+        element={<ProfileView token={token} currentId={currentId} />}
         />
       </Routes>
     </div>
