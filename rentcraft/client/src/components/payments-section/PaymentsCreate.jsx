@@ -6,9 +6,14 @@ import { API_PAYMENTS_CREATE } from '../../constants/endpoints';
 function PaymentsCreate(props) {
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal)
+    const [unitIdInput, setUnitIdInput] = useState("");
+    const [tenantIdInput, setTenantIdInput] = useState("");
     const [dateInput, setDateInput] = useState("");
     const [amountInput, setAmountInput] = useState("");
     const [paymentStateInput, setPaymentStateInput] = useState("");
+
+    // console.log(props.tenantData)
+    // console.log(props.unitData)
 
     async function handleCreate() {
         try {
@@ -19,6 +24,8 @@ function PaymentsCreate(props) {
 
             // Body
             let body = {
+                unit_id: unitIdInput,
+                tenant_id: tenantIdInput,
                 date: dateInput,
                 amount: amountInput,
                 paymentState: paymentStateInput
@@ -42,9 +49,11 @@ function PaymentsCreate(props) {
             props.fetchPaymentsFeed()
 
             // Clear Form Input
-            setDateInput("")
-            setAmountInput("")
-            setPaymentStateInput("")
+            // setUnitIdInput("")
+            // setTenantIdInput("")
+            // setDateInput("")
+            // setAmountInput("")
+            // setPaymentStateInput("")
 
             // Toggle Modal
             toggle()
@@ -63,6 +72,36 @@ function PaymentsCreate(props) {
 
             <ModalBody>
                 <Form>
+                    {/* Select Unit */}
+                    <FormGroup>
+                        <Label for='select unit'>Select Unit</Label>
+                        <Input 
+                        type='select'
+                        id='select unit'
+                        value={unitIdInput}
+                        onChange={(e) => setUnitIdInput(e.target.value)}
+                        >
+                            {props.unitData.map((unit, index) =>(
+                                <option key={index} value={unit._id}>{unit.address}</option>
+                            ))}
+                        </Input>
+                    </FormGroup>
+
+                    {/* Select Tennant */}
+                    <FormGroup>
+                        <Label for='select tenant'>Select Tenant</Label>
+                        <Input 
+                        type='select'
+                        id='select tenant'
+                        value={tenantIdInput}
+                        onChange={(e) => setTenantIdInput(e.target.value)}
+                        >
+                            {props.tenantData.map((tenant, index) =>(
+                                <option key={index} value={tenant._id}>{tenant.firstName}{tenant.lastName}</option>
+                            ))}
+                        </Input>
+                    </FormGroup>
+
                     {/* Date */}
                     <FormGroup>
                         <Label for='date'>Payment Date</Label>
