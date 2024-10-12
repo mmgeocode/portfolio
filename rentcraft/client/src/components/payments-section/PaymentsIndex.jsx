@@ -113,8 +113,8 @@ function PaymentsIndex(props) {
         token={props.token}
         currentId={props.currentId}
         paymentsData={paymentsData}
-        // unitData={unitData}
-        // tenantData={tenantData}
+        unitData={unitData}
+        tenantData={tenantData}
         fetchPaymentsFeed={fetchPaymentsFeed}
         />
       </div>

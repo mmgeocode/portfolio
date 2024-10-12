@@ -49,11 +49,11 @@ function PaymentsCreate(props) {
             props.fetchPaymentsFeed()
 
             // Clear Form Input
-            // setUnitIdInput("")
-            // setTenantIdInput("")
-            // setDateInput("")
-            // setAmountInput("")
-            // setPaymentStateInput("")
+            setUnitIdInput("")
+            setTenantIdInput("")
+            setDateInput("")
+            setAmountInput("")
+            setPaymentStateInput("")
 
             // Toggle Modal
             toggle()
@@ -78,9 +78,11 @@ function PaymentsCreate(props) {
                         <Input 
                         type='select'
                         id='select unit'
+                        placeholder='Select Unit'
                         value={unitIdInput}
                         onChange={(e) => setUnitIdInput(e.target.value)}
                         >
+                            <option default>Select</option>
                             {props.unitData.map((unit, index) =>(
                                 <option key={index} value={unit._id}>{unit.address}</option>
                             ))}
@@ -96,6 +98,7 @@ function PaymentsCreate(props) {
                         value={tenantIdInput}
                         onChange={(e) => setTenantIdInput(e.target.value)}
                         >
+                            <option default>Select Tenant</option>
                             {props.tenantData.map((tenant, index) =>(
                                 <option key={index} value={tenant._id}>{tenant.firstName}{tenant.lastName}</option>
                             ))}
@@ -134,6 +137,7 @@ function PaymentsCreate(props) {
                         value={paymentStateInput}
                         onChange={(e) => setPaymentStateInput(e.target.value)}
                         >
+                            <option default>Select Status</option>
                             <option>Full</option>
                             <option>Partial</option>
                             <option>Delinquent</option>

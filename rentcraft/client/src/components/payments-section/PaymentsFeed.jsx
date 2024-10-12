@@ -11,9 +11,10 @@ function PaymentsFeed(props) {
             token={props.token}
             currentId={props.currentId}
             fetchPaymentsFeed={props.fetchPaymentsFeed}
+            unitData={props.unitData}
+            tenantData={props.tenantData}
             />
         ))}
-        {/* <PaymentsCard></PaymentsCard> */}
     </>
   );
 }
