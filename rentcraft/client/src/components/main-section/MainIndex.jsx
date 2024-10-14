@@ -42,7 +42,6 @@ function MainIndex(props) {
   return (
     <>
         <div className="main-index">
-            <h2>MAIN INDEX</h2>
             <UnitCreate
             token={props.token}
             currentId={props.currentId}

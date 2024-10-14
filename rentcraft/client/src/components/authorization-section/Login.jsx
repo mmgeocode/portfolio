@@ -47,7 +47,7 @@ function Login(props) {
     <>
       <h2>Accout Login</h2>
 
-      <Form>
+      <Form className='login-form'>
         {/* Email */}
         <FormGroup>
           <Label for='email'>Email</Label>

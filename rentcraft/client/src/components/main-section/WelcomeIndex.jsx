@@ -9,8 +9,8 @@ function WelcomeIndex(props) {
   return (
     <>
         <div className="welcome-index">
-            <h1>Welcome to RentCraft</h1>
-            {!props.token ? (<RCButton onClick={handleAuth} title="Login or Register" />) : handleNavigateToMain()}
+            <h1 className="welcome">Welcome to RentCraft</h1>
+            {!props.token ? (<RCButton class='welcome-login-button' onClick={handleAuth} title="Login or Register" />) : handleNavigateToMain()}
         </div>
     </>
   );

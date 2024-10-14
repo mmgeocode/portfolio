@@ -5,16 +5,17 @@ function TenantsFeed(props) {
 
   return (
     <>
-        <h2>Tenants Feed</h2>
+      <div className="tenants-card-container">
         {activeTenants.map((tenant, index) => (
-            <TenantsCard 
-            key={index}
-            tenant={tenant}
-            fetchTenants={props.fetchTenants}
-            token={props.token}
-            currentId={props.currentId}
-            />
+          <TenantsCard 
+          key={index}
+          tenant={tenant}
+          fetchTenants={props.fetchTenants}
+          token={props.token}
+          currentId={props.currentId}
+          />
         ))}
+      </div>
     </>
   );
 }

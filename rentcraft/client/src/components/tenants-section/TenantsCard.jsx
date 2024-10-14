@@ -60,7 +60,7 @@ function TenantsCard(props) {
 
   return (
     <>
-        <Card>
+        <Card className="tenant">
             <CardHeader>
                 {editModeEnabled ? (<>
                     <Label for="first name">First Name</Label>

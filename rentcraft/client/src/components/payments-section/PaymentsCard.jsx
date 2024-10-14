@@ -128,7 +128,7 @@ function PaymentsCard(props) {
 
   return (
     <>
-        <Card>
+        <Card className='payments'>
             <CardHeader>
                 {editModeEnabled ? ( <>
                 {/* Edit Address */}

@@ -87,7 +87,7 @@ function ProfileView(props) {
 
   return (
     <>
-      <Card>
+      <Card className='profile'>
         <CardHeader>
           {userData.firstName} 
           {userData.lastName}'s Profile

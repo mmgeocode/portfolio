@@ -99,8 +99,6 @@ function PaymentsIndex(props) {
   return (
     <>
       <div className="payments-index">
-        <h2>Payments Index</h2>
-
         <PaymentsCreate 
         token={props.token}
         currentId={props.currentId}

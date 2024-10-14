@@ -36,13 +36,10 @@ function UnitCard(props) {
     
   return (
     <>
-        <h2>Unit Card</h2>
+        {/* <div className="unit-card"> */}
         <Card className="unit">
             <CardHeader>
                 Address: {address}
-                ID: {_id}
-                User ID: {user_id}
-
             </CardHeader>
 
             <CardBody>
@@ -56,6 +53,7 @@ function UnitCard(props) {
                 <RCButton title='View Unit' onClick={handleViewUnit} />
             </CardFooter>
         </Card>
+        {/* </div> */}
     </>
   );
 }

@@ -46,8 +46,8 @@ function App() {
 
   return (
     <div className='app-container'>
-      <NavBar token={token} currentId={currentId} clickLogout={clearToken} />
       <MainHeader token={token} currentId={currentId} />
+      <NavBar token={token} currentId={currentId} clickLogout={clearToken} />
       <Routes>
         <Route 
         path='/'

@@ -4,11 +4,12 @@
   --secondary: #CDC2AE;
   --tertiary: #C2DEDC;
   --quartenary: #116A7B;
+  background-color: var(--primary);
 }
 
 /* --- UI --- */
 .rc-button {
-  background-color: var(--quartenary);
+  background-color: var(--tertiary);
   padding: 10px;
   width: 200px;
   border-radius: 10px;
@@ -24,29 +25,137 @@
 .app-container {
   display: flex;
   flex-direction: column;
+  background-color: var(--primary);
+  align-items: center;
+  /* justify-content: center; */
+  /* align-self: center; */
 }
 
 /* --- HEADER --- */
 .header {
-  background-color: var(--tertiary);
+  background-color: var(--quartenary);
   width: 100%;
-  height: 25px;
+  height: 75px;
+  display: flex;
+  /* align-items: center; */
+  /* align-self: center; */
+  justify-content: center;
+}
+
+img.logo {
+  height: 75px;
 }
 
 /* --- NAVIGATION --- */
 .navigation {
-  background-color: var(--tertiary);
-  width: 100%;
-  height: 25px;
+  /* background-color: var(--tertiary); */
+  /* width: 100%; */
+  /* height: 25px; */
 }
 
 .navbar {
   background-color: var(--quartenary);
+  width: 100%;
 }
 
 /* --- AUTH --- */
 .authorization {
-  background-color: var(--primary);
+  background-color: var(--secondary);
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  width: 1000px;
+  margin-top: 2em;
+  padding-bottom: 1em;
+  border-radius: 5px;
+}
+
+.login-form {
+  width: 800px;
+  margin-bottom: 1em;
+}
+
+.create-account-form {
+  width: 800px;
+  margin-bottom: 1em;
 }
 
 /* --- MAIN --- */
+.welcome-index {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2em;
+}
+
+h1.welcome {
+  margin-bottom: 1em;
+}
+
+.main-index {
+  display: flex;
+  flex-direction: column;
+  width: 1000px;
+  margin-top: 1em;
+  align-items: center;
+}
+
+.unit-card-container {
+  display: flex;
+  justify-content: flex-start;
+  width: 1000px;
+  margin-top: 1em;
+}
+
+.unit.card {
+  width: 300px;
+  margin: 10px;
+}
+
+/* --- TENANTS --- */
+.tenants-index {
+  display: flex;
+  flex-direction: column;
+  width: 1000px;
+  margin-top: 1em;
+  /* align-self: center; */
+  align-items: center;
+}
+
+.tenants-card-container {
+  display: flex;
+  justify-content: flex-start;
+  width: 1000px;
+  margin-top: 1em;
+}
+
+.tenant.card {
+  width: 300px;
+  margin: 10px;
+}
+
+/* --- PAYMENTS --- */
+.payments-index {
+  display: flex;
+  flex-direction: column;
+  width: 1000px;
+  margin-top: 1em;
+  align-items: center;
+}
+
+.payments-card-container {
+  display: flex;
+  width: 1000px;
+  margin-top: 1em;
+}
+
+.payments.card {
+  width: 1000px;
+}
+
+/* --- PROFILE --- */
+.profile.card {
+  margin-top: 2em;
+  width: 500px;
+}

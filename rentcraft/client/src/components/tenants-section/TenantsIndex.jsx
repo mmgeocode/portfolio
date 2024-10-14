@@ -41,7 +41,6 @@ function TenantsIndex(props) {
   return (
     <>
         <div className="tenants-index">
-            <h2>Tenants Index</h2>
             <TenantsCreate 
             fetchTenants={fetchTenants}
             tenantsData={tenantsData}

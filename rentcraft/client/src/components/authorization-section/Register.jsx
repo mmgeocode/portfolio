@@ -53,7 +53,7 @@ function Register(props) {
   return (
     <>
       <h2>Create New Account</h2>
-      <Form>
+      <Form className='create-account-form'>
         {/* First Name */}
         <FormGroup>
           <Label>First Name</Label>
