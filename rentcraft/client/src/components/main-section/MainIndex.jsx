@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { API_UNIT_VIEW_ALL } from '../../constants/endpoints';
+import { API_UNIT_VIEW_BY_USER } from '../../constants/endpoints';
 import UnitFeed from '../unit-section/UnitFeed';
 import UnitCreate from '../unit-section/UnitCreate';
+import ReturnToAuth from '../authorization-section/ReturnToAuth';
 
 function MainIndex(props) {
     const [unitFeedItems, setUnitFeedItems] = useState([]);
     const [userId, setUserId] = useState("");
-
+    
     async function fetchUnitFeed() {
         try {
             // Headers
             const myHeaders = new Headers()
             myHeaders.append("Authorization", props.token)
-
+            
             // Request Options
             let requestOptions = {
                 method: "GET",
@@ -20,24 +21,26 @@ function MainIndex(props) {
             }
 
             // Send Request
-            const response = await fetch(API_UNIT_VIEW_ALL, requestOptions)
-
+            const response = await fetch(API_UNIT_VIEW_BY_USER + props.currentId, requestOptions)
+            
             // GET Response
             const data = await response.json()
             console.log(data)
-
+            
             // Set State
-            setUnitFeedItems(data.units)
-
+            setUnitFeedItems(data.user_units)
+            
         } catch (error) {
             console.error(error)
         }
     }
-
+    
     useEffect(() => {
         if (!props.token) return;
         fetchUnitFeed()
     }, [props.token]);
+    
+    if (!props.token) return <ReturnToAuth />
 
   return (
     <>

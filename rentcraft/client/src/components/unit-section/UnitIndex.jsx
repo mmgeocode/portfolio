@@ -3,6 +3,7 @@ import { API_UNIT_PATCH, API_UNIT_VIEW_BY_ID } from '../../constants/endpoints';
 import { useParams } from 'react-router-dom';
 import RCButton from '../../ui/RCButton';
 import { Input, Label } from 'reactstrap';
+import ReturnToAuth from '../authorization-section/ReturnToAuth';
 
 function UnitIndex(props) {
     const params = useParams()
@@ -92,6 +93,10 @@ function UnitIndex(props) {
         if (!props.token) return;
         fetchUnitData()
     }, [props.token]);
+
+    if (!props.token) {
+        return <ReturnToAuth />
+    }
 
   return (
     <>

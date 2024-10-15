@@ -47,12 +47,6 @@ img.logo {
 }
 
 /* --- NAVIGATION --- */
-.navigation {
-  /* background-color: var(--tertiary); */
-  /* width: 100%; */
-  /* height: 25px; */
-}
-
 .navbar {
   background-color: var(--quartenary);
   width: 100%;
@@ -79,6 +73,14 @@ img.logo {
 .create-account-form {
   width: 800px;
   margin-bottom: 1em;
+}
+
+.no-authorization {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 500px;
+  margin-top: 2em;
 }
 
 /* --- MAIN --- */

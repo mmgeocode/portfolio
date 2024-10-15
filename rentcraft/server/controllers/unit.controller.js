@@ -33,11 +33,24 @@ router.get("/view-all", validateSession, async (req, res) => {
     try {
         const units = await Unit.find()
 
+        
         res.json({
             message: "Viewing all units",
             units: units,
             userId: req.user._id,
         })
+        
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+})
+
+// Endpoint: http://localhost:4000/unit/user/:id
+router.get("/user/:id", validateSession, async (req, res) => {
+    try {
+        const user_units = await Unit.find()
+
+        res.json({ message: "Units found by user success", user_units: user_units })
 
     } catch (error) {
         res.status(500).json({ message: error.message })

@@ -1,4 +1,5 @@
 import { API_TENANTS_VIEW_ALL } from "../../constants/endpoints";
+import ReturnToAuth from "../authorization-section/ReturnToAuth";
 import TenantsCreate from "./TenantsCreate";
 import TenantsFeed from "./TenantsFeed";
 import React, { useState, useEffect } from 'react';
@@ -37,6 +38,10 @@ function TenantsIndex(props) {
         if (!props.token) return;
         fetchTenants();
     }, [props.token]);
+
+    if (!props.token) {
+        return <ReturnToAuth />
+    }
 
   return (
     <>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { API_USER_PATCH, API_USER_VIEW_BY_ID } from "../../constants/endpoints";
 import { Card, CardBody, CardFooter, CardHeader, Input, Label } from 'reactstrap';
 import RCButton from '../../ui/RCButton';
+import ReturnToAuth from '../authorization-section/ReturnToAuth';
 
 function ProfileView(props) {
   const [editModeEnabled, setEditModeEnabled] = useState(false);
@@ -84,6 +85,10 @@ function ProfileView(props) {
     if (!props.token) return;
     fetchUserData()
   }, [props.token]);
+
+  if (!props.token) {
+    return <ReturnToAuth />
+  }
 
   return (
     <>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { API_PAYMENTS_VIEW_ALL, API_TENANTS_VIEW_ALL, API_UNIT_VIEW_ALL } from '../../constants/endpoints';
 import PaymentsFeed from './PaymentsFeed';
 import PaymentsCreate from './PaymentsCreate';
+import ReturnToAuth from '../authorization-section/ReturnToAuth';
 
 function PaymentsIndex(props) {
   const [paymentsData, setPaymentsData] = useState([]);
@@ -95,6 +96,10 @@ function PaymentsIndex(props) {
     fetchUnits()
     fetchTenants()
   }, [props.token]);
+
+  if (!props.token) {
+    return <ReturnToAuth />
+  }
 
   return (
     <>
