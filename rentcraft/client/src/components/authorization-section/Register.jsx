@@ -44,7 +44,7 @@ function Register(props) {
       props.updateCurrentId(data.user._id)
 
       // Navigate to Main
-      navigate('/feed/' + data.user._id)
+      navigate('/main')
 
     } catch (error) {
       

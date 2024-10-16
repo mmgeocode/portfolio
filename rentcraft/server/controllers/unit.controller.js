@@ -48,7 +48,7 @@ router.get("/view-all", validateSession, async (req, res) => {
 // Endpoint: http://localhost:4000/unit/user/:id
 router.get("/user/:id", validateSession, async (req, res) => {
     try {
-        const user_units = await Unit.find()
+        const user_units = await Unit.find({ user_id: req.user._id })
 
         res.json({ message: "Units found by user success", user_units: user_units })
 

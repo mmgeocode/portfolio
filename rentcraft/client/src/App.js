@@ -60,7 +60,7 @@ function App() {
         />
 
         <Route
-        path='/feed/:id'
+        path='/main'
         element={<MainIndex token={token} currentId={currentId} />} 
         />
 
@@ -70,17 +70,17 @@ function App() {
         />
 
         <Route 
-        path='/tenants/view-all'
+        path='/tenants'
         element={<TenantsIndex token={token} currentId={currentId} />}
         />
 
         <Route 
-        path='/payments/view-all'
+        path='/payments'
         element={<PaymentsIndex token={token} currentId={currentId} />}
         />
 
         <Route 
-        path='/user/:id'
+        path='/account'
         element={<ProfileView token={token} currentId={currentId} />}
         />
       </Routes>
